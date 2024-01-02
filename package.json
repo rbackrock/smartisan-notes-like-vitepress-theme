@@ -1,0 +1,13 @@
+{
+  "name": "yhuan",
+  "license": "GPL-3.0",
+  "scripts": {
+    "dev": "vitepress dev blog",
+    "build": "vitepress build blog",
+    "preview": "vitepress preview blog"
+  },
+  "devDependencies": {
+    "less": "^4.2.0",
+    "vitepress": "^1.0.0-rc.34"
+  }
+}
