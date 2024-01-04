@@ -1,0 +1,66 @@
+/**
+ * h
+ * -------------------------------------------------------------------------- */
+
+.sn h1,
+.sn h2,
+.sn h3,
+.sn h4,
+.sn h5,
+.sn h6 {
+  position: relative;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  outline: none;
+  line-height: var(--md-text-height-mobile);
+  font-size: 1em;
+}
+
+.sn h1 {
+  font-size: 1.4em;
+}
+
+.sn h2 {
+  font-size: 1.2em;
+}
+
+.sn h3 {
+  font-size: 1.1em;
+}
+
+@media (min-width: 768px) {
+  .sn h1,
+  .sn h2,
+  .sn h3,
+  .sn h4,
+  .sn h5,
+  .sn h6 {
+    line-height: var(--md-text-height);
+  }
+
+  .sn h1 {
+    font-size: 1.6em;
+  }
+
+  .sn h2 {
+    font-size: 1.4em;
+  }
+
+  .sn h3 {
+    font-size: 1.2em;
+  }
+}
+
+/**
+ * p
+ * -------------------------------------------------------------------------- */
+
+.sn p {
+  line-height: var(--md-text-height-mobile);
+}
+
+@media (min-width: 768px) {
+  .sn p {
+    line-height: var(--md-text-height);
+  }
+}

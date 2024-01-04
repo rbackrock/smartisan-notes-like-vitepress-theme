@@ -1,0 +1,40 @@
+:root {
+  --font-family-base: 'Chinese Quotes', "PingFang SC", Helvetica, "Microsoft Yahei", ui-sans-serif,
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+/* border */
+:root {
+  --c-divider: red;
+}
+
+:root {
+  --header-anchor-symbol: '#'
+}
+
+:root {
+  --text-1: rgba(100, 86, 71, 1);
+  --text-2: rgba(180, 160, 142, 1);
+  --text-3: rgba(100, 86, 71, 0.8);
+  --c-text-3: rgba(180, 160, 142, 0.78);
+}
+
+:root {
+  --bg: #faf7ee;
+  --content-bg: #FFFCF7;
+}
+
+/* header */
+:root {
+  --header-height: 6vh;
+}
+
+/* mardown 内容 */
+:root {
+  --md-text-height: 39px;
+  --md-text-height-mobile: 33px;
+}
