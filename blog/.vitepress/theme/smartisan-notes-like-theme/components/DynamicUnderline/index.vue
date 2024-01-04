@@ -2,7 +2,7 @@
   <span class="motto"></span>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
   .motto {
     display: inline-block;
     height: 1px;

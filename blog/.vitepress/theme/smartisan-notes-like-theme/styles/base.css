@@ -249,3 +249,8 @@ mjx-container {
 mjx-container > svg {
   margin: auto;
 }
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}

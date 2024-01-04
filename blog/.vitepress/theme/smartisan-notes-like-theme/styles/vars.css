@@ -7,25 +7,32 @@
     Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
-/* border */
 :root {
-  --c-divider: red;
+  --layout-zindex: 1;
+  --layout-mask-zindex: 3;
 }
 
-:root {
-  --header-anchor-symbol: '#'
-}
-
+/* text */
 :root {
   --text-1: rgba(100, 86, 71, 1);
-  --text-2: rgba(180, 160, 142, 1);
   --text-3: rgba(100, 86, 71, 0.8);
-  --c-text-3: rgba(180, 160, 142, 0.78);
+  --sidebar-date-text: #b9a691;
+  --sidebar-title-text: #635753;
 }
 
+/* background color */
 :root {
   --bg: #faf7ee;
   --content-bg: #FFFCF7;
+  --backdrop-bg-color: rgba(0, 0, 0, 0.6);
+  --sidebar-bg: #fbf7ed;
+}
+
+/* 滚动条 */
+:root {
+  --scrollbar-bg: transparent;
+  --scrollbar-color: rgba(100, 86, 71, 1);
+  --scrollbar-border-radius: 9px;
 }
 
 /* header */
@@ -35,13 +42,15 @@
 
 /* mardown 内容 */
 :root {
-  --md-text-height: 39px;
+  --md-text-height: 40px;
   --md-text-height-mobile: 33px;
+  --header-anchor-symbol: '#';
 }
 
-/* 滚动条 */
+/* sidebar */
 :root {
-  --scrollbar-bg: transparent;
-  --scrollbar-color: rgba(100, 86, 71, 1);
-  --scrollbar-border-radius: 9px;
+  --sidebar-width: 272px;
+  --sidebar-width-mobile: calc(100vw - 64px);
+  --sidebar-border-color: #dcd6ca;
+  --sidebar-item-active-bg: #f1ece1;
 }

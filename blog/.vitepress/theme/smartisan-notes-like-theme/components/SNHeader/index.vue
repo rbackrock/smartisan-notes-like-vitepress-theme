@@ -17,7 +17,7 @@ import DynamicUnderline from '../DynamicUnderline/index.vue'
   </header>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
   .header {
     display: flex;
     justify-content: space-between;
@@ -26,8 +26,6 @@ import DynamicUnderline from '../DynamicUnderline/index.vue'
     padding: 0 3vw;
     box-shadow: rgba(0,0,0,.15) 0 1px 8px;
     background: linear-gradient(#716661,#5f5450);
-    border-bottom: 1px #534843 solid;
-    border-right: 1px #564944 solid;
 
     .who__container {
       color: #fff;
