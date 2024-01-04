@@ -1,4 +1,5 @@
 <script setup>
+import ContentAside from './ContentAside.vue'
 import { useData } from '../../composables/data'
 
 const { frontmatter } = useData()
@@ -8,6 +9,9 @@ const { frontmatter } = useData()
   <div class="content__container">
     <div class="content__container__wrapper">
       <Content class="sn" :class="frontmatter.layout === '3d' ? 'content__container__3d' : 'content__wrapper'" />
+      <div class="aside__wrapper">
+        <ContentAside />
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +34,11 @@ const { frontmatter } = useData()
   }
 
   .content__container__wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
     background-color: var(--content-bg);
     background-image: url(./grid.jpg);
     background-repeat: repeat;
@@ -38,6 +47,7 @@ const { frontmatter } = useData()
   }
 
   .content__wrapper {
+    flex: 1;
     padding-top: calc(1 * var(--md-text-height-mobile));;
     padding-right: 24px;
     padding-left: 24px;
@@ -46,6 +56,10 @@ const { frontmatter } = useData()
     background-image: url(./note_detail_edge.jpg);
     background-repeat: repeat-y;
     background-size: auto var(--md-text-height-mobile);
+  }
+
+  .aside__wrapper {
+    flex: 0 0 390px;
   }
 
   @media (min-width: 768px) {
