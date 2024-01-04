@@ -38,3 +38,10 @@
   --md-text-height: 39px;
   --md-text-height-mobile: 33px;
 }
+
+/* 滚动条 */
+:root {
+  --scrollbar-bg: transparent;
+  --scrollbar-color: rgba(100, 86, 71, 1);
+  --scrollbar-border-radius: 9px;
+}

@@ -17,23 +17,20 @@ const { frontmatter } = useData()
 
     &::-webkit-scrollbar {
       width: 9px;
-      background: transparent;
+      background: var(--scrollbar-bg);
     }
 
     &::-webkit-scrollbar-thumb {
-      background: transparent;
-      border-radius: 9px;
-      background: var(--text-3);
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-      border-radius: 9px;
+      border-radius: var(--scrollbar-border-radius);
+      background: var(--scrollbar-color);
     }
   }
 
   .content__container__wrapper {
-    padding: 0 24px;
+    padding-top: 0;
+    padding-right: 24px;
+    padding-left: 24px;
+    padding-bottom: calc(3 * var(--md-text-height-mobile));
     background-color: var(--content-bg);
     background-image: url(./grid.jpg);
     background-repeat: repeat;
@@ -43,7 +40,9 @@ const { frontmatter } = useData()
 
   @media (min-width: 768px) {
     .content__container__wrapper {
-      padding: 0 36px;
+      padding-right: 36px;
+      padding-left: 36px;
+      padding-bottom: calc(3 * var(--md-text-height));
       background-size: 100% var(--md-text-height);
     }
   }
