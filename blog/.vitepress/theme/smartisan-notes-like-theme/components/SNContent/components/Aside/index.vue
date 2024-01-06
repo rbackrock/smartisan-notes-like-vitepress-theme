@@ -1,8 +1,11 @@
 <script setup>
+import { inject } from 'vue'
+
+const device = inject('device')
 </script>
 
 <template>
-  <div class="aside__container">
+  <div :class="device" class="aside__container">
     <div class="aside__container__wrapper">
       <ul class="list">
         <li class="item">
@@ -39,7 +42,7 @@
 </template>
 
 <style lang="less" scoped>
-  .aside__container {
+  .aside__container.p {
     position: fixed;
     top: 16vh;
     right: 64px;
@@ -68,7 +71,6 @@
       background-repeat: no-repeat;
       background-position: 100% 100%;
       background-size: cover;
-      // 106:164=?:56
 
       &.t1 {
         top: -15px;
@@ -89,4 +91,8 @@
       }
     }
   }
+</style>
+
+<style lang="less" scoped>
+  .aside__container.m {}
 </style>

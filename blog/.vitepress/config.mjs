@@ -6,6 +6,7 @@ export default defineConfig({
   title: 'My Awesome Project',
   description: 'A VitePress Site',
   srcDir: './posts',
+  outDir: '../dist',
   head: [
     [
       'link',

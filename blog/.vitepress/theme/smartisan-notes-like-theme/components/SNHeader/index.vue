@@ -44,10 +44,10 @@ import DynamicUnderline from '../DynamicUnderline/index.vue'
         .button__container {
           padding: 1px;
           border-radius: 8px;
-          line-height: 3.6vh;
+          line-height: var(--header-line-height);
           background: #cacaca;
           background: rgba(0, 0, 0, .2);
-          font-size: 1.1em;
+          font-size: 0.9em;
           cursor: pointer;
 
           .button {

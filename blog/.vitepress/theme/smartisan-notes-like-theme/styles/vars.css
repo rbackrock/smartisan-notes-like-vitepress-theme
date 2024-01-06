@@ -30,14 +30,15 @@
 
 /* 滚动条 */
 :root {
-  --scrollbar-bg: transparent;
+  --scrollbar-bg: #b9a691;
   --scrollbar-color: rgba(100, 86, 71, 1);
   --scrollbar-border-radius: 9px;
 }
 
 /* header */
 :root {
-  --header-height: 6vh;
+  --header-height: 3.9vh;
+  --header-line-height: 2.3vh;
 }
 
 /* mardown 内容 */

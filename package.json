@@ -8,6 +8,6 @@
   },
   "devDependencies": {
     "less": "^4.2.0",
-    "vitepress": "^1.0.0-rc.34"
+    "vitepress": "^1.0.0-rc.35"
   }
 }
