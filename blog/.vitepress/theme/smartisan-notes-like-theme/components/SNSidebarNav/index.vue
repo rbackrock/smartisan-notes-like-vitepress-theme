@@ -91,17 +91,23 @@
           padding: 0 0 0 20px;
 
           .date {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
             height: 50%;
             color: var(--sidebar-date-text);
-            font-size: 0.6em;
+            font-size: 0.8em;
           }
 
           .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             height: 50%;
-            top: -4px;
+            // top: -4px;
             position: relative;
             overflow: hidden;
-            font-size: 0.7em;
+            font-size: 1em;
             color: var(--sidebar-title-text);
             word-break: break-all;
             word-wrap: break-word;
@@ -124,7 +130,7 @@
         width: 100%;
 
         .item__wrapper {
-          height: calc(var(--md-text-height) * 1) !important;
+          height: calc(var(--md-text-height) * 2) !important;
         }
       }
     }

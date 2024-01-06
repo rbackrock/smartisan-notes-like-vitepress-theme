@@ -42,7 +42,7 @@
 
 /* mardown 内容 */
 :root {
-  --md-text-height: 40px;
+  --md-text-height: 36px;
   --md-text-height-mobile: 33px;
   --header-anchor-symbol: '#';
 }

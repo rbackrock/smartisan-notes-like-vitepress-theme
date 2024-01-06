@@ -49,7 +49,7 @@
       width: 330px;
       padding: 26px 26px;
       background-image: linear-gradient( 135deg, #FDEB71 10%, #F8D800 100%);
-      box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+      box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.1);
       font-size: 0.8em;
       border-radius: 3px;
 

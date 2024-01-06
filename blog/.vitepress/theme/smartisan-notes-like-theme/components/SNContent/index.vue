@@ -38,6 +38,7 @@ const { frontmatter } = useData()
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    min-height: calc(100vh - var(--header-height));
 
     background-color: var(--content-bg);
     background-image: url(./grid.jpg);
@@ -47,9 +48,10 @@ const { frontmatter } = useData()
   }
 
   .content__wrapper {
+    min-height: calc(100vh - var(--header-height));
     flex: 1;
-    padding-top: calc(1 * var(--md-text-height-mobile));;
-    padding-right: 24px;
+    padding-top: calc(1 * var(--md-text-height-mobile));
+    padding-right: 12px;
     padding-left: 24px;
     padding-bottom: calc(3 * var(--md-text-height-mobile));
 
@@ -73,7 +75,7 @@ const { frontmatter } = useData()
 
     .content__wrapper {
       padding-top: calc(1 * var(--md-text-height));
-      padding-right: 36px;
+      padding-right: 18px;
       padding-left: 36px;
       padding-bottom: calc(3 * var(--md-text-height));
       background-size: auto var(--md-text-height);
