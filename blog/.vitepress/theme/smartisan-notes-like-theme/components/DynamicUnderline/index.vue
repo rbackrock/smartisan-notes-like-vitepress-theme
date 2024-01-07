@@ -6,7 +6,7 @@
   .motto {
     display: inline-block;
     height: 1px;
-    width: 13px;
+    width: 9px;
     border-bottom: 2px solid;
     opacity: 1;
 

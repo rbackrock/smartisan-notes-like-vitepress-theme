@@ -1,11 +1,15 @@
 <script setup>
+import { inject } from 'vue'
 import DynamicUnderline from '../DynamicUnderline/index.vue'
+
+const device = inject('device')
 </script>
 
 <template>
-  <header class="header">
+  <header :class="device" class="header">
     <div class="who__container">
-      <div class="who__wrapper"><span>[rback@blog ~] # </span><DynamicUnderline /></div></div>
+      <div class="who__wrapper"><span>[rback@blog ~] # </span><DynamicUnderline /></div>
+    </div>
     <div class="buttons">
       <div class="button__wrapper home">
         <div class="button__container"><span class="button">首页</span></div>
@@ -18,7 +22,7 @@ import DynamicUnderline from '../DynamicUnderline/index.vue'
 </template>
 
 <style lang="less" scoped>
-  .header {
+  .header.p {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,7 +33,7 @@ import DynamicUnderline from '../DynamicUnderline/index.vue'
 
     .who__container {
       color: #fff;
-      font-size: 1.2em;
+      font-size: var(--header-title-fontsize);
       font-weight: 450;
     }
 
@@ -47,7 +51,59 @@ import DynamicUnderline from '../DynamicUnderline/index.vue'
           line-height: var(--header-line-height);
           background: #cacaca;
           background: rgba(0, 0, 0, .2);
-          font-size: 0.9em;
+          font-size: var(--header-buttons-fontsize);
+          cursor: pointer;
+
+          .button {
+            display: inline-block;
+            vertical-align: top;
+            padding: 0 16px;
+            background: linear-gradient(#716661, #5f5450);
+            color: #fff;
+            box-shadow: 0 1px rgba(255,255,255,.1) inset;
+            border-radius: 7px;
+
+            &:hover {
+              background: linear-gradient(#8e7968, #7e6c5e);
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<style lang="less" scoped>
+  .header.m {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height-mobile);
+    padding: 0 3vw;
+    box-shadow: rgba(0,0,0,.15) 0 1px 8px;
+    background: linear-gradient(#716661,#5f5450);
+
+    .who__container {
+      color: #fff;
+      font-size: var(--header-title-fontsize-mobile);
+      font-weight: 450;
+    }
+
+    .buttons {
+      .button__wrapper {
+        display: inline-block;
+
+        &.home {
+          padding: 0 0.9vw 0 0;
+        }
+
+        .button__container {
+          padding: 1px;
+          border-radius: 8px;
+          line-height: var(--header-line-height-mobile);
+          background: #cacaca;
+          background: rgba(0, 0, 0, .2);
+          font-size: var(--header-buttons-fontsize-mobile);
           cursor: pointer;
 
           .button {

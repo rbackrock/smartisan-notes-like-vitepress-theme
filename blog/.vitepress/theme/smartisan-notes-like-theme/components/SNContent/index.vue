@@ -11,9 +11,7 @@ const device = inject('device')
   <div :class="device" class="content__container">
     <div  class="content__container__wrapper">
       <Content class="sn" :class="frontmatter.layout === '3d' ? 'content__container__3d' : 'content__wrapper'" />
-      <div class="aside__wrapper">
-        <ContentAside />
-      </div>
+      <ContentAside />
     </div>
   </div>
 </template>
@@ -69,7 +67,7 @@ const device = inject('device')
 
 <style lang="less" scoped>
   .content__container.m {
-    flex: 0 0 calc(100% - var(--sidebar-width));
+    flex: 1;
     height: 100%;
     overflow-y: auto;
 
@@ -94,23 +92,19 @@ const device = inject('device')
       background-image: url(./grid.jpg);
       background-repeat: repeat;
       background-position: left top;
-      background-size: 100% var(--md-text-height);
+      background-size: 100% var(--md-text-height-mobile);
 
       .content__wrapper {
         min-height: calc(100vh - var(--header-height));
         flex: 1;
-        padding-top: calc(1 * var(--md-text-height));
+        padding-top: calc(1 * var(--md-text-height-mobile));
         padding-right: 18px;
         padding-left: 36px;
-        padding-bottom: calc(3 * var(--md-text-height));
+        padding-bottom: calc(3 * var(--md-text-height-mobile));
 
         background-image: url(./note_detail_edge.jpg);
         background-repeat: repeat-y;
-        background-size: auto var(--md-text-height);
-      }
-
-      .aside__wrapper {
-        flex: 0 0 390px;
+        background-size: auto var(--md-text-height-mobile);
       }
     }
   }

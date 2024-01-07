@@ -15,6 +15,7 @@ function onIsDesktopEvent() {
 }
 
 onMounted(() => {
+  onIsDesktopEvent()
   window.addEventListener('resize', onIsDesktopEvent)
 })
 

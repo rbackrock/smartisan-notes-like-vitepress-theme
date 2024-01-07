@@ -119,6 +119,7 @@ const device = inject('device')
 
 <style lang="less" scoped>
   .sidebar__container.m {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -131,6 +132,9 @@ const device = inject('device')
     touch-action: none;
 
     .sidebar__container__wrapper {
+      position: relative;
+      top: 0;
+      left: calc(0px - var(--sidebar-width-mobile));
       width: var(--sidebar-width-mobile);
       height: 100%;
       background: var(--sidebar-bg);
