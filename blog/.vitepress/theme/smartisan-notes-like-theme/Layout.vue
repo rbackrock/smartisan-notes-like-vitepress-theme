@@ -27,7 +27,7 @@ provide('device', device)
 </script>
 
 <template>
-  <div v-if="frontmatter.layout !== false" class="layout__container">
+  <div v-if="frontmatter.layout !== false" :class="device" class="layout__container">
     <SNHeader />
     <div class="body__container">
       <SNSidebar />
@@ -38,7 +38,7 @@ provide('device', device)
 </template>
 
 <style lang="less" scoped>
-  .layout__container {
+  .layout__container.p {
     position: relative;
     width: 100%;
     height: 100vh;
@@ -50,6 +50,24 @@ provide('device', device)
       align-items: stretch;
       width: 100%;
       height: calc(100% - var(--header-height));
+      z-index: 1;
+    }
+  }
+</style>
+
+<style lang="less" scoped>
+  .layout__container.m {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: var(--layout-zindex);
+
+    .body__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      width: 100%;
+      height: calc(100% - var(--header-height) * 2);
       z-index: 1;
     }
   }

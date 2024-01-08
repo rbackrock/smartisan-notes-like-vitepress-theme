@@ -1,6 +1,8 @@
 <script setup>
 import { inject } from 'vue'
 import DynamicUnderline from '../DynamicUnderline/index.vue'
+import IconAlignLeft from '../Icons/IconAlignLeft.vue'
+import IconChevronRight from '../Icons/IconChevronRight.vue'
 
 const device = inject('device')
 </script>
@@ -19,6 +21,20 @@ const device = inject('device')
       </div>
     </div>
   </header>
+  <div :class="device" class="control">
+    <div class="control__wrapper">
+      <div class="p1">
+        <div class="p1__wrapper button">
+          <span><IconAlignLeft class="menu-icon" /></span><span>菜单</span>
+        </div>
+      </div>
+      <div class="p2">
+        <div class="p2__wrapper button">
+          <span>目录</span><span><IconChevronRight class="menu-icon" /></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="less" scoped>
@@ -71,6 +87,10 @@ const device = inject('device')
       }
     }
   }
+
+  .control.p {
+    display: none;
+  }
 </style>
 
 <style lang="less" scoped>
@@ -120,6 +140,35 @@ const device = inject('device')
             }
           }
         }
+      }
+    }
+  }
+
+  .control.m {
+    height: var(--header-height);
+    background: linear-gradient(#5f5450,#716661);
+    color: #fff;
+    font-size: var(--header-buttons-fontsize-mobile);
+
+    .control__wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      padding: 0 3vw;
+      height: 100%;
+
+      .menu-icon {
+        margin-right: 8px;
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+      }
+
+      .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
       }
     }
   }
