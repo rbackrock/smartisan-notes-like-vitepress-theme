@@ -37,10 +37,10 @@
 
 /* header */
 :root {
-  --header-height: 4.3vh;
-  --header-line-height: 2.3vh;
-  --header-height-mobile: 4.3vh;
-  --header-line-height-mobile: 2.6vh;
+  --header-height: 5vh;
+  --header-line-height: 3vh;
+  --header-height-mobile: 5vh;
+  --header-line-height-mobile: 3vh;
   --header-title-fontsize: 1.2em;
   --header-title-fontsize-mobile: 1em;
   --header-buttons-fontsize: 0.9em;
@@ -64,6 +64,6 @@
 
 /* aside */
 :root {
-  --aside-width: 390px;
+  --aside-width: 260px;
   --aside-width-mobile: 390px;
 }

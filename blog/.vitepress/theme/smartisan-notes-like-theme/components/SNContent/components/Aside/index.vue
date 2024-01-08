@@ -45,7 +45,7 @@ const device = inject('device')
 
 <style lang="less" scoped>
   .aside__wrapper.p {
-    flex: 0 0 var(--aside-width);
+    flex: 0 0 calc(var(--aside-width) + 80px);
 
     .aside__container {
       position: fixed;
@@ -54,7 +54,7 @@ const device = inject('device')
       z-index: 9;
 
       .aside__container__wrapper {
-        width: 330px;
+        width: var(--aside-width);
         padding: 26px 26px;
         background-image: linear-gradient( 135deg, #FDEB71 10%, #F8D800 100%);
         box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.1);

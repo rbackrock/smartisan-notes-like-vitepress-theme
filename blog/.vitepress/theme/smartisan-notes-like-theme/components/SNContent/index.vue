@@ -57,10 +57,6 @@ const device = inject('device')
         background-repeat: repeat-y;
         background-size: auto var(--md-text-height);
       }
-
-      .aside__wrapper {
-        flex: 0 0 390px;
-      }
     }
   }
 </style>
