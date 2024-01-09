@@ -56,7 +56,7 @@
 
 /* sidebar */
 :root {
-  --sidebar-width: 272px;
+  --sidebar-width: 240px;
   --sidebar-width-mobile: calc(100vw - 64px);
   --sidebar-border-color: #dcd6ca;
   --sidebar-item-active-bg: #f1ece1;

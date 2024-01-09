@@ -25,7 +25,7 @@ const device = inject('device')
     <div class="control__wrapper">
       <div class="p1">
         <div class="p1__wrapper button">
-          <span><IconAlignLeft class="menu-icon" /></span><span>菜单</span>
+          <span><IconAlignLeft class="menu-icon" /></span><span>文章</span>
         </div>
       </div>
       <div class="p2">
