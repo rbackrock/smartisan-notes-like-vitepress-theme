@@ -1,10 +1,9 @@
 <script setup>
-import { inject, computed } from 'vue'
+import {  computed } from 'vue'
 import { sidebarStore } from '../../store'
 
-const device = inject('device')
 const sidebarClassNames = computed(() => {
-  const classNames = [device.value]
+  const classNames = []
   if (sidebarStore.isOpenMenu) {
     classNames.push('open__menu')
   }
@@ -50,82 +49,84 @@ function handleClose() {
 </template>
 
 <style lang="less" scoped>
-  .sidebar__container.p {
-    flex: 0 0 var(--sidebar-width);
-    position: relative;
-    width: auto;
-    height: 100%;
-    z-index: var(--layout-mask-zindex);
-    background: var(--backdrop-bg-color);
-    touch-action: none;
-
-    .sidebar__container__wrapper {
-      width: 100%;
+  @media (min-width: 768px) {
+    .sidebar__container {
+      flex: 0 0 var(--sidebar-width);
+      position: relative;
+      width: auto;
       height: 100%;
-      background: var(--sidebar-bg);
-      overflow-y: auto;
-      border-right: 1px var(--sidebar-border-color) solid;
-      touch-action: manipulation;
+      z-index: var(--layout-mask-zindex);
+      background: var(--backdrop-bg-color);
+      touch-action: none;
 
-      &::-webkit-scrollbar {
-        width: 9px;
-        background: var(--scrollbar-bg);
-      }
+      .sidebar__container__wrapper {
+        width: 100%;
+        height: 100%;
+        background: var(--sidebar-bg);
+        overflow-y: auto;
+        border-right: 1px var(--sidebar-border-color) solid;
+        touch-action: manipulation;
 
-      &::-webkit-scrollbar-thumb {
-        border-radius: var(--scrollbar-border-radius);
-        background: var(--scrollbar-color);
-      }
-
-      .list {
-        .category {
-          height: calc(var(--md-text-height) * 2);
-          line-height: calc(var(--md-text-height) * 2);
-          border-bottom: 1px var(--sidebar-border-color) solid;
-          text-align: center;
-          font-size: 1.1em;
+        &::-webkit-scrollbar {
+          width: 9px;
+          background: var(--scrollbar-bg);
         }
 
-        .item {
-          box-shadow: 0 1px 4px rgba(0,0,0,.03) inset;
+        &::-webkit-scrollbar-thumb {
+          border-radius: var(--scrollbar-border-radius);
+          background: var(--scrollbar-color);
+        }
 
-          &.active {
-            background: var(--sidebar-item-active-bg);
-          }
-
-          &:hover {
-            background: var(--sidebar-item-active-bg);
-          }
-
-          .item__wrapper {
+        .list {
+          .category {
             height: calc(var(--md-text-height) * 2);
+            line-height: calc(var(--md-text-height) * 2);
             border-bottom: 1px var(--sidebar-border-color) solid;
-            position: relative;
-            padding: 0 0 0 20px;
+            text-align: center;
+            font-size: 1.1em;
+          }
 
-            .date {
-              display: flex;
-              align-items: flex-end;
-              justify-content: space-between;
-              height: 50%;
-              color: var(--sidebar-date-text);
-              font-size: 0.9em;
+          .item {
+            box-shadow: 0 1px 4px rgba(0,0,0,.03) inset;
+
+            &.active {
+              background: var(--sidebar-item-active-bg);
             }
 
-            .title {
-              display: flex;
-              justify-content: space-between;
-              align-items: flex-start;
-              height: 50%;
+            &:hover {
+              background: var(--sidebar-item-active-bg);
+            }
+
+            .item__wrapper {
+              height: calc(var(--md-text-height) * 2);
+              border-bottom: 1px var(--sidebar-border-color) solid;
               position: relative;
-              overflow: hidden;
-              font-size: 1em;
-              color: var(--sidebar-title-text);
-              word-break: break-all;
-              word-wrap: break-word;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              cursor: default;
+              padding: 0 0 0 20px;
+
+              .date {
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                height: 50%;
+                color: var(--sidebar-date-text);
+                font-size: 0.9em;
+              }
+
+              .title {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                height: 50%;
+                position: relative;
+                overflow: hidden;
+                font-size: 1em;
+                color: var(--sidebar-title-text);
+                word-break: break-all;
+                word-wrap: break-word;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                cursor: default;
+              }
             }
           }
         }
@@ -135,106 +136,106 @@ function handleClose() {
 </style>
 
 <style lang="less" scoped>
-  .sidebar__container.m {
-    display: block;
-    opacity: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100%;
-    z-index: var(--layout-mask-zindex);
-    background: var(--backdrop-bg-color);
-    touch-action: none;
-    z-index: -1;
-    transition: opacity 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-
-    .sidebar__container__wrapper {
-      position: relative;
+  @media (max-width: 768px) {
+    .sidebar__container {
+      opacity: 0;
+      position: fixed;
       top: 0;
       left: 0;
-      width: var(--sidebar-width-mobile);
+      right: 0;
+      bottom: 0;
+      width: 100vw;
       height: 100%;
-      background: var(--sidebar-bg);
-      overflow-y: auto;
-      border-right: 1px var(--sidebar-border-color) solid;
-      touch-action: manipulation;
-      transform: translate(calc(0vw - var(--sidebar-width-mobile)), 0);
-      transition: transform 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-
-      &::-webkit-scrollbar {
-        width: 9px;
-        background: var(--scrollbar-bg);
-      }
-
-      &::-webkit-scrollbar-thumb {
-        border-radius: var(--scrollbar-border-radius);
-        background: var(--scrollbar-color);
-      }
-
-      .list {
-        .category {
-          height: var(--md-text-height);
-          line-height: var(--md-text-height);
-          border-bottom: 1px var(--sidebar-border-color) solid;
-          text-align: center;
-        }
-
-        .item {
-          box-shadow: 0 1px 4px rgba(0,0,0,.03) inset;
-
-          &.active {
-            background: var(--sidebar-item-active-bg);
-          }
-
-          &:hover {
-            background: var(--sidebar-item-active-bg);
-          }
-
-          .item__wrapper {
-            height: var(--md-text-height);
-            border-bottom: 1px var(--sidebar-border-color) solid;
-            position: relative;
-            padding: 0 0 0 20px;
-
-            .date {
-              display: flex;
-              align-items: flex-start;
-              justify-content: space-between;
-              height: 50%;
-              color: var(--sidebar-date-text);
-              font-size: 0.6em;
-            }
-
-            .title {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              height: 50%;
-              position: relative;
-              overflow: hidden;
-              font-size: 0.7em;
-              color: var(--sidebar-title-text);
-              word-break: break-all;
-              word-wrap: break-word;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              cursor: default;
-            }
-          }
-        }
-      }
-    }
-
-    &.open__menu {
-      display: block;
-      opacity: 1;
-      z-index: 3;
+      z-index: var(--layout-mask-zindex);
+      background: var(--backdrop-bg-color);
+      touch-action: none;
+      z-index: -1;
+      transition: opacity 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 
       .sidebar__container__wrapper {
-        transform: translate(0, 0);
+        position: relative;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-width-mobile);
+        height: 100%;
+        background: var(--sidebar-bg);
+        overflow-y: auto;
+        border-right: 1px var(--sidebar-border-color) solid;
+        touch-action: manipulation;
+        transform: translate(calc(0vw - var(--sidebar-width-mobile)), 0);
+        transition: transform 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+        &::-webkit-scrollbar {
+          width: 9px;
+          background: var(--scrollbar-bg);
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: var(--scrollbar-border-radius);
+          background: var(--scrollbar-color);
+        }
+
+        .list {
+          .category {
+            height: var(--md-text-height);
+            line-height: var(--md-text-height);
+            border-bottom: 1px var(--sidebar-border-color) solid;
+            text-align: center;
+          }
+
+          .item {
+            box-shadow: 0 1px 4px rgba(0,0,0,.03) inset;
+
+            &.active {
+              background: var(--sidebar-item-active-bg);
+            }
+
+            &:hover {
+              background: var(--sidebar-item-active-bg);
+            }
+
+            .item__wrapper {
+              height: var(--md-text-height);
+              border-bottom: 1px var(--sidebar-border-color) solid;
+              position: relative;
+              padding: 0 0 0 20px;
+
+              .date {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                height: 50%;
+                color: var(--sidebar-date-text);
+                font-size: 0.6em;
+              }
+
+              .title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 50%;
+                position: relative;
+                overflow: hidden;
+                font-size: 0.7em;
+                color: var(--sidebar-title-text);
+                word-break: break-all;
+                word-wrap: break-word;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                cursor: default;
+              }
+            }
+          }
+        }
+      }
+
+      &.open__menu {
+        opacity: 1;
+        z-index: 3;
+
+        .sidebar__container__wrapper {
+          transform: translate(0, 0);
+        }
       }
     }
   }
