@@ -37,8 +37,6 @@ const device = inject('device')
       </div>
 
       <div class="tape t1" />
-      <div class="tape t2" />
-      <div class="tape t3" />
     </div>
   </div>
 </template>
@@ -70,17 +68,20 @@ const device = inject('device')
 
       .tape {
         position: absolute;
-        width: 36px;
-        height: 56px;
+        // width: 36px;
+        // height: 56px;
+        width: 29px;
+        height: 45px;
         background-image: url(./tape.png);
         background-repeat: no-repeat;
         background-position: 100% 100%;
         background-size: cover;
+        // 36:56 = 29:45
 
         &.t1 {
-          top: -15px;
-          left: -4px;
-          transform: rotate(31deg);
+          top: -25px;
+          left: 50%;
+          transform: rotate(352deg) translate(-50%, 0);
         }
 
         &.t2 {
