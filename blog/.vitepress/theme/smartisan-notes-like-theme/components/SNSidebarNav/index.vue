@@ -17,6 +17,7 @@ function handleClose() {
 </script>
 
 <template>
+  <div v-show="sidebarStore.isOpenMenu" class="mask" @click.self="handleClose" />
   <div
     :class="sidebarClassNames"
     class="sidebar__container"
@@ -50,6 +51,10 @@ function handleClose() {
 
 <style lang="less" scoped>
   @media (min-width: 768px) {
+    .mask {
+      display: none;
+    }
+
     .sidebar__container {
       flex: 0 0 var(--sidebar-width);
       position: relative;
@@ -137,33 +142,38 @@ function handleClose() {
 
 <style lang="less" scoped>
   @media (max-width: 768px) {
+    .mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: var(--backdrop-bg-color);
+      z-index: var(--layout-mask-zindex);
+    }
+
     .sidebar__container {
       opacity: 0;
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100vw;
+      width: var(--sidebar-width-mobile);
       height: 100%;
-      z-index: var(--layout-mask-zindex);
-      background: var(--backdrop-bg-color);
       touch-action: none;
-      z-index: -1;
+      transform: translate(calc(0vw - var(--sidebar-width-mobile)), 0);
       transition: opacity 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      z-index: var(--layout-sidebar-zindex);
 
       .sidebar__container__wrapper {
         position: relative;
         top: 0;
         left: 0;
-        width: var(--sidebar-width-mobile);
+        width: 100%;
         height: 100%;
         background: var(--sidebar-bg);
         overflow-y: auto;
         border-right: 1px var(--sidebar-border-color) solid;
         touch-action: manipulation;
-        transform: translate(calc(0vw - var(--sidebar-width-mobile)), 0);
-        transition: transform 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 
         &::-webkit-scrollbar {
           width: 9px;
@@ -231,11 +241,7 @@ function handleClose() {
 
       &.open__menu {
         opacity: 1;
-        z-index: 3;
-
-        .sidebar__container__wrapper {
-          transform: translate(0, 0);
-        }
+        transform: translate(0, 0);
       }
     }
   }

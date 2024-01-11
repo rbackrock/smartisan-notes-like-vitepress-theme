@@ -10,6 +10,7 @@
 :root {
   --layout-zindex: 1;
   --layout-mask-zindex: 3;
+  --layout-sidebar-zindex: 9;
 }
 
 /* text */
