@@ -74,7 +74,6 @@ const device = inject('device')
         background-repeat: no-repeat;
         background-position: 100% 100%;
         background-size: cover;
-        // 36:56 = 29:45
 
         &.t1 {
           top: -25px;
