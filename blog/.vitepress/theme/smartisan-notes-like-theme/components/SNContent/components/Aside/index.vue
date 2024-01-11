@@ -68,8 +68,6 @@ const device = inject('device')
 
       .tape {
         position: absolute;
-        // width: 36px;
-        // height: 56px;
         width: 29px;
         height: 45px;
         background-image: url(./tape.png);
