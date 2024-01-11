@@ -3,8 +3,13 @@ import { inject } from 'vue'
 import DynamicUnderline from '../DynamicUnderline/index.vue'
 import IconAlignLeft from '../Icons/IconAlignLeft.vue'
 import IconChevronRight from '../Icons/IconChevronRight.vue'
+import { sidebarStore } from '../../store'
 
 const device = inject('device')
+
+function handleOpenMenu() {
+  sidebarStore.toggleOpenMenu()
+}
 </script>
 
 <template>
@@ -24,7 +29,7 @@ const device = inject('device')
   <div :class="device" class="control">
     <div class="control__wrapper">
       <div class="p1">
-        <div class="p1__wrapper button">
+        <div class="p1__wrapper button" @click="handleOpenMenu">
           <span><IconAlignLeft class="menu-icon" /></span><span>文章</span>
         </div>
       </div>

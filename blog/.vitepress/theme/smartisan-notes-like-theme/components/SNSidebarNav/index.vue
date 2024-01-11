@@ -1,11 +1,28 @@
 <script setup>
-import { inject } from 'vue'
+import { inject, computed } from 'vue'
+import { sidebarStore } from '../../store'
 
 const device = inject('device')
+const sidebarClassNames = computed(() => {
+  const classNames = [device.value]
+  if (sidebarStore.isOpenMenu) {
+    classNames.push('open__menu')
+  }
+
+  return classNames
+})
+
+function handleClose() {
+  sidebarStore.toggleOpenMenu()
+}
 </script>
 
 <template>
-  <div :class="device" class="sidebar__container">
+  <div
+    :class="sidebarClassNames"
+    class="sidebar__container"
+    @click.self="handleClose"
+  >
     <div class="sidebar__container__wrapper">
       <ul class="list">
         <li class="category">工具</li>
@@ -119,7 +136,8 @@ const device = inject('device')
 
 <style lang="less" scoped>
   .sidebar__container.m {
-    display: none;
+    display: block;
+    opacity: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -130,17 +148,21 @@ const device = inject('device')
     z-index: var(--layout-mask-zindex);
     background: var(--backdrop-bg-color);
     touch-action: none;
+    z-index: -1;
+    transition: opacity 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 
     .sidebar__container__wrapper {
       position: relative;
       top: 0;
-      left: calc(0px - var(--sidebar-width-mobile));
+      left: 0;
       width: var(--sidebar-width-mobile);
       height: 100%;
       background: var(--sidebar-bg);
       overflow-y: auto;
       border-right: 1px var(--sidebar-border-color) solid;
       touch-action: manipulation;
+      transform: translate(calc(0vw - var(--sidebar-width-mobile)), 0);
+      transition: transform 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 
       &::-webkit-scrollbar {
         width: 9px;
@@ -203,6 +225,16 @@ const device = inject('device')
             }
           }
         }
+      }
+    }
+
+    &.open__menu {
+      display: block;
+      opacity: 1;
+      z-index: 3;
+
+      .sidebar__container__wrapper {
+        transform: translate(0, 0);
       }
     }
   }
