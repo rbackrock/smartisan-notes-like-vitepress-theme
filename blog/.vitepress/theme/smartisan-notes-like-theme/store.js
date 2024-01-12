@@ -6,3 +6,10 @@ export const sidebarStore = reactive({
     this.isOpenMenu = !this.isOpenMenu
   }
 })
+
+export const asideStore = reactive({
+  isOpenDropdown: false,
+  toggleOpenDropdown() {
+    this.isOpenDropdown = !this.isOpenDropdown
+  }
+})

@@ -2,10 +2,18 @@
 import DynamicUnderline from '../DynamicUnderline/index.vue'
 import IconAlignLeft from '../Icons/IconAlignLeft.vue'
 import IconChevronRight from '../Icons/IconChevronRight.vue'
-import { sidebarStore } from '../../store'
+import IconChevronDown from '../Icons/IconChevronDown.vue'
+import {
+  sidebarStore,
+  asideStore
+} from '../../store'
 
 function handleOpenMenu() {
   sidebarStore.toggleOpenMenu()
+}
+
+function handleOpenCatalog() {
+  asideStore.toggleOpenDropdown()
 }
 </script>
 
@@ -31,8 +39,10 @@ function handleOpenMenu() {
         </div>
       </div>
       <div class="p2">
-        <div class="p2__wrapper button">
-          <span>目录</span><span><IconChevronRight class="menu-icon" /></span>
+        <div class="p2__wrapper button" @click="handleOpenCatalog">
+          <span>目录</span>
+          <span v-if="asideStore.isOpenDropdown === false"><IconChevronRight class="menu-icon" /></span>
+          <span v-else><IconChevronDown class="menu-icon" /></span>
         </div>
       </div>
     </div>
