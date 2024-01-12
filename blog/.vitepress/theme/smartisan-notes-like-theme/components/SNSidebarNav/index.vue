@@ -43,6 +43,7 @@ function handleClose() {
     @click.self="handleClose"
   >
     <div class="sidebar__container__wrapper">
+      <div v-if="sidebarList.length === 0" class="empty">文章列表为空</div>
       <ul :key="groupIndex" v-for="(itemGroup, groupIndex) in sidebarList" class="list">
         <li class="category">{{ itemGroup.category }}</li>
         <li :key="itemIndex" v-for="(item, itemIndex) in itemGroup.items" :class="{ active: currentLink === item.link }" class="item">
@@ -56,6 +57,14 @@ function handleClose() {
     </div>
   </div>
 </template>
+
+<style lang="less" scoped>
+  .empty {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-3);
+  }
+</style>
 
 <style lang="less" scoped>
   @media (min-width: 768px) {
