@@ -37,8 +37,8 @@ body {
   font-family: var(--font-family-base);
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-1);
-  background-color: var(--bg);
+  
+  
   font-synthesis: style;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

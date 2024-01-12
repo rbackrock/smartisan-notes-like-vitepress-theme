@@ -1,4 +1,5 @@
 <script setup>
+import { useData } from '../../composables/data'
 import DynamicUnderline from '../DynamicUnderline/index.vue'
 import IconAlignLeft from '../Icons/IconAlignLeft.vue'
 import IconChevronRight from '../Icons/IconChevronRight.vue'
@@ -7,6 +8,8 @@ import {
   sidebarStore,
   asideStore
 } from '../../store'
+
+const { frontmatter } = useData()
 
 function handleOpenMenu() {
   sidebarStore.toggleOpenMenu()
@@ -38,7 +41,7 @@ function handleOpenCatalog() {
           <span><IconAlignLeft class="menu-icon" /></span><span>文章</span>
         </div>
       </div>
-      <div class="p2">
+      <div v-if="frontmatter.layout !== '3d'" class="p2">
         <div class="p2__wrapper button" @click="handleOpenCatalog">
           <span>目录</span>
           <span v-if="asideStore.isOpenDropdown === false"><IconChevronRight class="menu-icon" /></span>

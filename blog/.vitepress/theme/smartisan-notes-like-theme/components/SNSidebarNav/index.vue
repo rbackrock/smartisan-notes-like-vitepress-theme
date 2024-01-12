@@ -60,6 +60,7 @@ function handleClose() {
       z-index: var(--layout-mask-zindex);
       background: var(--backdrop-bg-color);
       touch-action: none;
+      box-shadow: 1px 0px 9px 0px rgba(0, 0, 0, 0.1);
 
       .sidebar__container__wrapper {
         width: 100%;

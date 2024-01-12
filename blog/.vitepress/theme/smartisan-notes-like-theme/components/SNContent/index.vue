@@ -1,14 +1,11 @@
 <script setup>
 import ContentAside from './components/Aside/index.vue'
-import { useData } from '../../composables/data'
-
-const { frontmatter } = useData()
 </script>
 
 <template>
   <div class="content__container">
     <div  class="content__container__wrapper">
-      <Content class="sn" :class="frontmatter.layout === '3d' ? 'content__container__3d' : 'content__wrapper'" />
+      <Content class="sn content__wrapper" />
       <ContentAside />
     </div>
   </div>
