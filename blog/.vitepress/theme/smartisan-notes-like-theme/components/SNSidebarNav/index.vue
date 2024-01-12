@@ -28,19 +28,16 @@ function handleClose() {
         <li class="category">工具</li>
         <li class="item">
           <div class="item__wrapper">
-            <div class="date">2024年1月4日</div>
             <div class="title">从上传谈起</div>
           </div>
         </li>
         <li class="item">
           <div class="item__wrapper">
-            <div class="date">2024年1月4日</div>
             <div class="title">从上传谈起</div>
           </div>
         </li>
         <li class="item">
           <div class="item__wrapper">
-            <div class="date">2024年1月4日</div>
             <div class="title">从上传谈起</div>
           </div>
         </li>
@@ -84,11 +81,12 @@ function handleClose() {
 
         .list {
           .category {
-            height: calc(var(--md-text-height) * 2);
-            line-height: calc(var(--md-text-height) * 2);
+            height: calc(var(--md-text-height) * 1);
+            line-height: calc(var(--md-text-height) * 1);
             border-bottom: 1px var(--sidebar-border-color) solid;
             text-align: center;
-            font-size: 1.1em;
+            font-size: 1em;
+            font-weight: 600;
           }
 
           .item {
@@ -103,28 +101,19 @@ function handleClose() {
             }
 
             .item__wrapper {
-              height: calc(var(--md-text-height) * 2);
+              height: calc(var(--md-text-height) * 1);
               border-bottom: 1px var(--sidebar-border-color) solid;
               position: relative;
               padding: 0 0 0 20px;
 
-              .date {
-                display: flex;
-                align-items: flex-end;
-                justify-content: space-between;
-                height: 50%;
-                color: var(--sidebar-date-text);
-                font-size: 0.9em;
-              }
-
               .title {
                 display: flex;
                 justify-content: space-between;
-                align-items: flex-start;
-                height: 50%;
+                align-items: center;
+                height: 100%;
                 position: relative;
                 overflow: hidden;
-                font-size: 1em;
+                font-size: 0.8em;
                 color: var(--sidebar-title-text);
                 word-break: break-all;
                 word-wrap: break-word;
@@ -191,6 +180,8 @@ function handleClose() {
             line-height: var(--md-text-height);
             border-bottom: 1px var(--sidebar-border-color) solid;
             text-align: center;
+            font-size: 1em;
+            font-weight: 600;
           }
 
           .item {
@@ -210,20 +201,11 @@ function handleClose() {
               position: relative;
               padding: 0 0 0 20px;
 
-              .date {
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                height: 50%;
-                color: var(--sidebar-date-text);
-                font-size: 0.6em;
-              }
-
               .title {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                height: 50%;
+                height: 100%;
                 position: relative;
                 overflow: hidden;
                 font-size: 0.7em;
