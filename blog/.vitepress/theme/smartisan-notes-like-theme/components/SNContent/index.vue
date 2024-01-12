@@ -80,7 +80,7 @@ import ContentAside from './components/Aside/index.vue'
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        min-height: calc(100vh - var(--header-height));
+        min-height: calc(100vh - var(--header-height) * 2);
 
         background-color: var(--content-bg);
         background-image: url(./grid.jpg);
@@ -89,7 +89,7 @@ import ContentAside from './components/Aside/index.vue'
         background-size: 100% var(--md-text-height-mobile);
 
         .content__wrapper {
-          min-height: calc(100vh - var(--header-height));
+          min-height: calc(100vh - var(--header-height) * 2);
           flex: 1;
           padding-top: calc(1 * var(--md-text-height-mobile));
           padding-right: 18px;

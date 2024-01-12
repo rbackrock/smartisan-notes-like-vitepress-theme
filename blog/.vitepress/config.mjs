@@ -12,5 +12,22 @@ export default defineConfig({
       'link',
       { rel: 'icon', href: '/favicon.ico' }
     ]
-  ]
+  ],
+  themeConfig: {
+    sidebar: [
+      {
+        category: '这是分类',
+        items: [
+          {
+            title: '这是标题',
+            link: '/test'
+          },
+          {
+            title: '这是标题1',
+            link: '/test1'
+          }
+        ]
+      }
+    ]
+  }
 })

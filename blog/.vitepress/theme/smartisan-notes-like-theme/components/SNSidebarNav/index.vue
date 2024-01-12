@@ -1,6 +1,25 @@
 <script setup>
-import {  computed } from 'vue'
+import { computed } from 'vue'
 import { sidebarStore } from '../../store'
+import {
+  useData
+} from '../../composables/data'
+import {
+  useRoute
+} from 'vitepress'
+
+const {
+  theme
+} = useData()
+const route = useRoute()
+
+const sidebarList = theme.value?.sidebar || []
+
+const currentLink = computed(() => {
+  const path = route.path
+  const dotIndex = path.lastIndexOf('.')
+  return path.substring(0, dotIndex)
+})
 
 const sidebarClassNames = computed(() => {
   const classNames = []
@@ -24,21 +43,13 @@ function handleClose() {
     @click.self="handleClose"
   >
     <div class="sidebar__container__wrapper">
-      <ul class="list">
-        <li class="category">工具</li>
-        <li class="item">
+      <ul :key="groupIndex" v-for="(itemGroup, groupIndex) in sidebarList" class="list">
+        <li class="category">{{ itemGroup.category }}</li>
+        <li :key="itemIndex" v-for="(item, itemIndex) in itemGroup.items" :class="{ active: currentLink === item.link }" class="item">
           <div class="item__wrapper">
-            <div class="title">从上传谈起</div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="item__wrapper">
-            <div class="title">从上传谈起</div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="item__wrapper">
-            <div class="title">从上传谈起</div>
+            <a :href="item.link" @click="sidebarStore.toggleOpenMenu()">
+              <div class="title">{{ item.title }}</div>
+            </a>
           </div>
         </li>
       </ul>
