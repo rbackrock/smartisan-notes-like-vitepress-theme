@@ -16,7 +16,7 @@ const { frontmatter } = useData()
       <SNContent3d />
     </div>
   </div>
-  <div v-else class="layout__container">
+  <div v-else class="layout__container doc">
     <SNHeader />
     <div class="body__container">
       <SNSidebar />

@@ -1,5 +1,42 @@
 <script setup>
+import {
+  shallowRef
+} from 'vue'
+import {
+  onContentUpdated
+} from 'vitepress'
+import { useData } from '../../../../composables/data'
+import {
+  getHeaderStructure
+} from '../../../../composables/outline'
 import { asideStore } from '../../../../store'
+import OutlineItem from './OutlineItem.vue'
+
+const data = useData()
+const headers = shallowRef([])
+const headingScrollTopMapper = shallowRef({})
+
+function makeHeadingScrollTopMapper() {
+  const mapper = {}
+  const contentEl = document.getElementById('content__container__hook')
+  const contentRect = contentEl.getBoundingClientRect()
+  const headersEl = [
+    ...document.querySelectorAll('.layout__container.doc :where(h1, h2, h3, h4, h5, h6)')
+  ]
+  .filter(el => el.id && el.hasChildNodes())
+
+  for (const headerEl of headersEl) {
+    const headingRect = headerEl.getBoundingClientRect()
+    mapper[headerEl.id] = Math.abs(contentRect.y - headingRect.y)
+  }
+  return mapper
+}
+
+onContentUpdated(() => {
+  headers.value = getHeaderStructure()
+  headingScrollTopMapper.value = makeHeadingScrollTopMapper()
+
+})
 </script>
 
 <template>
@@ -8,41 +45,11 @@ import { asideStore } from '../../../../store'
       <div class="to__top">
         <div class="to__top__wrapper">回到顶部</div>
       </div>
-      <div class="aside__container__wrapper">
-        <ul class="list nested">
-          <li class="item">
-            <div class="item__wrapper">标题索引1</div>
-          </li>
-          <li class="item">
-            <div class="item__wrapper">标题索引1</div>
-          </li>
-          <li class="item">
-            <div class="item__wrapper">标题索引1</div>
-          </li>
-          <li class="item">
-            <div class="item__wrapper">标题索引1</div>
-          </li>
-          <li class="item">
-            <div class="item__wrapper">标题索引1</div>
-          </li>
-          <li class="item">
-            <div class="item__wrapper">标题索引1</div>
-          </li>
-          <li class="item">
-            <div class="item__wrapper">标题索引1</div>
-          </li>
-          <li class="item">
-            <div class="item__wrapper">标题索引1</div>
-            <ul class="list nested">
-              <li class="item">
-                <div class="item__wrapper">标题索引1-1</div>
-              </li>
-            </ul>
-          </li>
-        </ul>
+      <div v-if="headers.length > 0" class="aside__container__wrapper">
+        <OutlineItem :headers="headers" :heading-scroll-top-mapper="headingScrollTopMapper" />
       </div>
 
-      <div class="tape t1" />
+      <div v-if="headers.length > 0" class="tape t1" />
     </div>
   </div>
 </template>

@@ -3,7 +3,7 @@ import ContentAside from './components/Aside/index.vue'
 </script>
 
 <template>
-  <div class="content__container">
+  <div id="content__container__hook" class="content__container">
     <div  class="content__container__wrapper">
       <Content class="sn content__wrapper" />
       <ContentAside />
