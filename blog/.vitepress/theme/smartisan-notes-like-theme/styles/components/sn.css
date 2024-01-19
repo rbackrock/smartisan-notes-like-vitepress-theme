@@ -64,3 +64,113 @@
     line-height: var(--md-text-height);
   }
 }
+
+/**
+ * not pre code
+ * -------------------------------------------------------------------------- */
+
+.sn :not(pre) > code {
+  padding: 2px 4px;
+  background-color: rgba(180, 160, 142, 0.13);
+  border-radius: 4px;
+}
+
+/**
+ * code block
+ * -------------------------------------------------------------------------- */
+
+.sn div[class*='language-'] {
+  position: relative;
+  width: calc(100vw - var(--sidebar-width) - var(--aside-width) - 80px - var(--content-wrapper-padding-left) - var(--content-wrapper-padding-right));
+  border-radius: 8px;
+  background-color: hsl(30, 20%, 25%);
+  /* background-color: #48284A; */
+  overflow-x: auto;
+  margin-top: var(--md-text-height);
+  margin-bottom: var(--md-text-height);
+  box-shadow: 0 3px 9px 0px rgba(0, 0, 0, 0.6);
+}
+
+.sn div[class*='language-'] pre {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0 0;
+  background: transparent;
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  tab-size: 4;
+}
+
+.sn div[class*='language-'] code {
+  display: block;
+  padding: 0 24px;
+  line-height: var(--md-text-height);
+  width: fit-content;
+  min-width: 100%;
+  transition: color 0.5s;
+}
+
+.sn [class*='language-'] > button.copy {
+  direction: ltr;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  border: 1px solid #e2e2e3;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  background-color: #eee;
+  opacity: 0;
+  cursor: pointer;
+  background-image: var(--icon-copy);
+  background-position: 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  transition: border-color 0.25s, background-color 0.25s, opacity 0.25s;
+}
+
+.sn [class*='language-']:hover > button.copy,
+.vp-doc [class*='language-'] > button.copy:focus {
+  opacity: 1;
+}
+
+.sn [class*='language-'] > button.copy:hover,
+.sn [class*='language-'] > button.copy.copied {
+  border-color: #ffeeee;
+  background-color: #fff;
+}
+
+.sn [class*='language-'] > span.lang {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffeeee;
+  transition: color 0.4s, opacity 0.4s;
+}
+
+.sn [class*='language-']:hover > button.copy + span.lang,
+.sn [class*='language-'] > button.copy:focus + span.lang {
+  opacity: 0;
+}
+
+.vp-code span {
+  color: var(--shiki-dark);
+}
+
+@media (max-width: 768px) {
+  .sn div[class*='language-'] {
+    width: calc(100vw - var(--content-wrapper-padding-left) - var(--content-wrapper-padding-right));
+    margin-top: var(--md-text-height-mobile);
+    margin-bottom: var(--md-text-height-mobile);
+  }
+}

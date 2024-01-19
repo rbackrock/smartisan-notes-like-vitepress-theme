@@ -45,8 +45,8 @@ import ContentAside from './components/Aside/index.vue'
           min-height: calc(100vh - var(--header-height));
           flex: 1;
           padding-top: calc(1 * var(--md-text-height));
-          padding-right: 18px;
-          padding-left: 36px;
+          padding-right: var(--content-wrapper-padding-right);
+          padding-left: var(--content-wrapper-padding-left);
           padding-bottom: calc(3 * var(--md-text-height));
 
           background-image: url(./note_detail_edge.jpg);
@@ -92,8 +92,8 @@ import ContentAside from './components/Aside/index.vue'
           min-height: calc(100vh - var(--header-height) * 2);
           flex: 1;
           padding-top: calc(1 * var(--md-text-height-mobile));
-          padding-right: 18px;
-          padding-left: 36px;
+          padding-right: var(--content-wrapper-padding-right-mobile);
+          padding-left: var(--content-wrapper-padding-left-mobile);
           padding-bottom: calc(3 * var(--md-text-height-mobile));
 
           background-image: url(./note_detail_edge.jpg);
