@@ -23,3 +23,9 @@ authenticate_new_work_conns = true
 authentication_method = token
 token = dVo3rtiakUFsvictWi43xx4q
 ```
+
+| Tables        |      Are      |  Cool |
+| ------------- | :-----------: | ----: |
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      |   centered    |   $12 |
+| zebra stripes |   are neat    |    $1 |

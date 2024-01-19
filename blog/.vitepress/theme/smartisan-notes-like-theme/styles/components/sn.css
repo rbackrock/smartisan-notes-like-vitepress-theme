@@ -87,8 +87,10 @@
   /* background-color: #48284A; */
   overflow-x: auto;
   margin-top: var(--md-text-height);
-  margin-bottom: var(--md-text-height);
+  margin-bottom: calc(var(--md-text-height) * 1);
   box-shadow: 0 3px 9px 0px rgba(0, 0, 0, 0.6);
+
+  height: 396px;
 }
 
 .sn div[class*='language-'] pre {
@@ -97,7 +99,7 @@
   margin: 0;
   padding: 0 0;
   background: transparent;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   direction: ltr;
   text-align: left;
   white-space: pre;
@@ -173,4 +175,21 @@
     margin-top: var(--md-text-height-mobile);
     margin-bottom: var(--md-text-height-mobile);
   }
+}
+
+/**
+ * table
+ * -------------------------------------------------------------------------- */
+
+.sn table {
+  display: block;
+  border-collapse: collapse;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.sn tr {
+  background-color: var(--sn-table-bg-color);
+  border-top: 1px solid var(--sn-table-border-color);
+  transition: background-color 0.6s;
 }
