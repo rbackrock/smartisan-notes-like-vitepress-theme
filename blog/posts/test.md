@@ -74,3 +74,10 @@ This is a dangerous warning.
 ::: details
 This is a details block.
 :::
+
+```js
+export default {
+  name: 'MyComponent',
+  // ...
+}
+```

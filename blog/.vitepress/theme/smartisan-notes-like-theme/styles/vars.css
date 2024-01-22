@@ -84,6 +84,5 @@
 }
 
 :root {
-  --sn-table-bg-color: rgba(180, 160, 142, 0.1);
-  --sn-table-border-color: #dcd6ca;
+  /* custom-block */
 }

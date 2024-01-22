@@ -310,5 +310,58 @@
  * custom-block
  * -------------------------------------------------------------------------- */
 .sn .custom-block {
+  border-radius: 8px;
+  padding: 16px 16px 8px;
+  margin-top: var(--md-text-height);
+  margin-bottom: calc(var(--md-text-height) * 1);
+}
 
+.sn .custom-block .custom-block-title {
+  font-weight: 600;
+}
+
+.sn .custom-block p {
+  margin: 8px 0;
+  line-height: 24px;
+}
+
+.sn .custom-block p:first-child {
+  margin: 0;
+}
+
+.sn .custom-block.info {
+  background: #eff0f3;
+}
+
+.sn .custom-block.tip {
+  background: #e9eafe;
+}
+
+.sn .custom-block.warning {
+  background: #fbf5e4;
+}
+
+.sn .custom-block.danger {
+  background: #fbe6e9;
+}
+
+.sn .custom-block.details {
+  background: #eff0f3;
+}
+
+.sn .custom-block.details summary {
+  margin: 0 0 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sn .custom-block.details summary + p {
+  margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+  .sn .custom-block {
+    margin-top: var(--md-text-height-mobile);
+    margin-bottom: calc(var(--md-text-height-mobile) * 1);
+  }
 }

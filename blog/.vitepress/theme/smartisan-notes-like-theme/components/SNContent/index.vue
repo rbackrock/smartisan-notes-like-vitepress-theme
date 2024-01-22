@@ -16,12 +16,24 @@ const {
 const lineHeightPc = 36
 const lineHeightMobile = 33
 const fixImgHandleFnList = []
+const customBlockMutationObserverList = []
 
 function fixImgHeight(imgEl, lineHeight) {
   if (imgEl) {
     const imgHeight = imgEl.offsetHeight
     if (imgHeight !== undefined && imgHeight !== 0) {
       imgEl.style.height = `${Math.ceil(imgHeight / lineHeight + 0.001) * lineHeight}px`
+    }
+  }
+}
+
+function fixCustomBlockHeight(customBlockEl, lineHeight) {
+  console.log(customBlockEl.offsetHeight)
+  if (customBlockEl) {
+    customBlockEl.style.height = `auto`
+    const customBlockHeight = customBlockEl.offsetHeight
+    if (customBlockHeight !== undefined && customBlockHeight !== 0) {
+      customBlockEl.style.height = `${Math.ceil(customBlockHeight / lineHeight + 0.001) * lineHeight}px`
     }
   }
 }
@@ -36,7 +48,7 @@ function fixElementHeight() {
   for (const codeBlock of codeBlockListEl) {
     const codeBlockHeight = codeBlock.offsetHeight
     if (codeBlockHeight !== undefined && codeBlockHeight !== 0) {
-      codeBlock.style.height = `${Math.ceil(codeBlockHeight / lineHeight + 0.001) * lineHeight}px`
+      codeBlock.style.height = `${Math.ceil((codeBlockHeight) / lineHeight) * lineHeight}px`
     }
   }
 
@@ -66,6 +78,28 @@ function fixElementHeight() {
       handler: currentFixImgHeightFn
     })
     imgEl.addEventListener('load', currentFixImgHeightFn)
+  }
+
+  /**
+   * custom-block
+   */
+  const customBlockListEl = document.querySelectorAll(`.sn.content__wrapper .custom-block`)
+  for (const customBlockEl of customBlockListEl) {
+    // const customBlockHeight = customBlockEl.offsetHeight
+    // if (customBlockHeight !== undefined && customBlockHeight !== 0) {
+    //   customBlockEl.style.height = `${Math.ceil(customBlockHeight / lineHeight + 0.001) * lineHeight}px`
+    // }
+    fixCustomBlockHeight(customBlockEl, lineHeight)
+
+    if (customBlockEl.classList.contains('details')) {
+      const customBlockMutationObserver = new MutationObserver((mutationsList, observer) => {
+        const [mutation] = mutationsList
+        console.log(mutation)
+        fixCustomBlockHeight(mutation.target, lineHeight)
+      })
+      customBlockMutationObserver.observe(customBlockEl, { attributeFilter: ['open'] })
+      customBlockMutationObserverList.push(customBlockMutationObserver)
+    }
   }
 }
 
