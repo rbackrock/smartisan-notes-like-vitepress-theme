@@ -18,38 +18,24 @@ const lineHeightMobile = 33
 const fixImgHandleFnList = []
 const customBlockMutationObserverList = []
 
-function fixImgHeight(imgEl, lineHeight) {
-  if (imgEl) {
-    const imgHeight = imgEl.offsetHeight
-    if (imgHeight !== undefined && imgHeight !== 0) {
-      imgEl.style.height = `${Math.ceil(imgHeight / lineHeight + 0.001) * lineHeight}px`
+function setElementHeight(el, stepHeight) {
+  if (el) {
+    const elHeight = el.offsetHeight
+    if (elHeight !== undefined && elHeight !== 0) {
+      el.style.height = `${Math.ceil(elHeight / stepHeight + 0) * stepHeight}px`
     }
   }
 }
 
-function fixCustomBlockHeight(customBlockEl, lineHeight) {
-  console.log(customBlockEl.offsetHeight)
-  if (customBlockEl) {
-    customBlockEl.style.height = `auto`
-    const customBlockHeight = customBlockEl.offsetHeight
-    if (customBlockHeight !== undefined && customBlockHeight !== 0) {
-      customBlockEl.style.height = `${Math.ceil(customBlockHeight / lineHeight + 0.001) * lineHeight}px`
-    }
-  }
-}
-
-function fixElementHeight() {
-  const lineHeight = isDesktop.value ? lineHeightPc : lineHeightMobile
+function fixContentElementHeight() {
+  const stepHeight = isDesktop.value ? lineHeightPc : lineHeightMobile
 
   /**
    * 代码块
    */
   const codeBlockListEl = document.querySelectorAll(`.sn.content__wrapper div[class*='language-']`)
-  for (const codeBlock of codeBlockListEl) {
-    const codeBlockHeight = codeBlock.offsetHeight
-    if (codeBlockHeight !== undefined && codeBlockHeight !== 0) {
-      codeBlock.style.height = `${Math.ceil((codeBlockHeight) / lineHeight) * lineHeight}px`
-    }
+  for (const codeBlockEl of codeBlockListEl) {
+    setElementHeight(codeBlockEl, stepHeight)
   }
 
   /**
@@ -61,7 +47,7 @@ function fixElementHeight() {
     const theadHeight = tableEl.querySelector('thead').offsetHeight
 
     if (tableHeight !== undefined && tableHeight !== 0) {
-      const calcHeight = Math.ceil(tableHeight / lineHeight + 0.001) * lineHeight
+      const calcHeight = Math.ceil(tableHeight / stepHeight + 0.001) * stepHeight
       tableEl.style.height = `${calcHeight}px`
       tableEl.querySelector('tbody').style.height = `${calcHeight - theadHeight - 1}px`
     }
@@ -72,7 +58,7 @@ function fixElementHeight() {
    */
   const imgListEl = document.querySelectorAll(`.sn.content__wrapper img`)
   for (const imgEl of imgListEl) {
-    const currentFixImgHeightFn = fixImgHeight.bind(null, imgEl, lineHeight)
+    const currentFixImgHeightFn = setElementHeight.bind(null, imgEl, stepHeight)
     fixImgHandleFnList.push({
       el: imgEl,
       handler: currentFixImgHeightFn
@@ -85,17 +71,13 @@ function fixElementHeight() {
    */
   const customBlockListEl = document.querySelectorAll(`.sn.content__wrapper .custom-block`)
   for (const customBlockEl of customBlockListEl) {
-    // const customBlockHeight = customBlockEl.offsetHeight
-    // if (customBlockHeight !== undefined && customBlockHeight !== 0) {
-    //   customBlockEl.style.height = `${Math.ceil(customBlockHeight / lineHeight + 0.001) * lineHeight}px`
-    // }
-    fixCustomBlockHeight(customBlockEl, lineHeight)
+    setElementHeight(customBlockEl, stepHeight)
 
     if (customBlockEl.classList.contains('details')) {
       const customBlockMutationObserver = new MutationObserver((mutationsList, observer) => {
         const [mutation] = mutationsList
-        console.log(mutation)
-        fixCustomBlockHeight(mutation.target, lineHeight)
+        customBlockEl.style.height = `auto`
+        setElementHeight(mutation.target, stepHeight)
       })
       customBlockMutationObserver.observe(customBlockEl, { attributeFilter: ['open'] })
       customBlockMutationObserverList.push(customBlockMutationObserver)
@@ -104,15 +86,19 @@ function fixElementHeight() {
 }
 
 onContentUpdated(() => {
-  window.addEventListener('resize', fixElementHeight)
-  fixElementHeight()
+  window.addEventListener('resize', fixContentElementHeight)
+  fixContentElementHeight()
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', fixElementHeight)
+  window.removeEventListener('resize', fixContentElementHeight)
 
   for (const handleObject of fixImgHandleFnList) {
     handleObject.el.removeEventListener('load', handleObject.handler)
+  }
+
+  for (const customBlockMutationObserver of customBlockMutationObserverList) {
+    customBlockMutationObserver.disconnect()
   }
 })
 </script>
