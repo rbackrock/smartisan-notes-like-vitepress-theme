@@ -73,8 +73,8 @@
 :root {
   --content-wrapper-padding-left: 36px;
   --content-wrapper-padding-right: 18px;
-  --content-wrapper-padding-left-mobile: 36px;
-  --content-wrapper-padding-right-mobile: 18px;
+  --content-wrapper-padding-left-mobile: 23px;
+  --content-wrapper-padding-right-mobile: 23px;
 }
 
 /* sn */

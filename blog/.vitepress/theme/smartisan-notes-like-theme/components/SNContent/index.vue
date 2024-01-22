@@ -1,11 +1,92 @@
 <script setup>
+import {
+  onUnmounted
+} from 'vue'
+import {
+  onContentUpdated
+} from 'vitepress'
+import {
+  useIsDesktop
+} from '../../composables/device'
 import ContentAside from './components/Aside/index.vue'
+
+const {
+  isDesktop
+} = useIsDesktop()
+const lineHeightPc = 36
+const lineHeightMobile = 33
+const fixImgHandleFnList = []
+
+function fixImgHeight(imgEl, lineHeight) {
+  if (imgEl) {
+    const imgHeight = imgEl.offsetHeight
+    if (imgHeight !== undefined && imgHeight !== 0) {
+      imgEl.style.height = `${Math.ceil(imgHeight / lineHeight + 0.001) * lineHeight}px`
+    }
+  }
+}
+
+function fixElementHeight() {
+  const lineHeight = isDesktop.value ? lineHeightPc : lineHeightMobile
+
+  /**
+   * 代码块
+   */
+  const codeBlockListEl = document.querySelectorAll(`.sn.content__wrapper div[class*='language-']`)
+  for (const codeBlock of codeBlockListEl) {
+    const codeBlockHeight = codeBlock.offsetHeight
+    if (codeBlockHeight !== undefined && codeBlockHeight !== 0) {
+      codeBlock.style.height = `${Math.ceil(codeBlockHeight / lineHeight + 0.001) * lineHeight}px`
+    }
+  }
+
+  /**
+   * 表格
+   */
+  const tableListEl = document.querySelectorAll(`.sn.content__wrapper table`)
+  for (const tableEl of tableListEl) {
+    const tableHeight = tableEl.offsetHeight
+    const theadHeight = tableEl.querySelector('thead').offsetHeight
+
+    if (tableHeight !== undefined && tableHeight !== 0) {
+      const calcHeight = Math.ceil(tableHeight / lineHeight + 0.001) * lineHeight
+      tableEl.style.height = `${calcHeight}px`
+      tableEl.querySelector('tbody').style.height = `${calcHeight - theadHeight - 1}px`
+    }
+  }
+
+  /**
+   * img 图片
+   */
+  const imgListEl = document.querySelectorAll(`.sn.content__wrapper img`)
+  for (const imgEl of imgListEl) {
+    const currentFixImgHeightFn = fixImgHeight.bind(null, imgEl, lineHeight)
+    fixImgHandleFnList.push({
+      el: imgEl,
+      handler: currentFixImgHeightFn
+    })
+    imgEl.addEventListener('load', currentFixImgHeightFn)
+  }
+}
+
+onContentUpdated(() => {
+  window.addEventListener('resize', fixElementHeight)
+  fixElementHeight()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', fixElementHeight)
+
+  for (const handleObject of fixImgHandleFnList) {
+    handleObject.el.removeEventListener('load', handleObject.handler)
+  }
+})
 </script>
 
 <template>
   <div id="content__container__hook" class="content__container">
     <div  class="content__container__wrapper">
-      <Content class="sn content__wrapper" />
+      <Content ref="el" class="sn content__wrapper" />
       <ContentAside />
     </div>
   </div>
