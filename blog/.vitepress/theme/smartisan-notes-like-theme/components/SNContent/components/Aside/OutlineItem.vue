@@ -1,4 +1,6 @@
 <script setup>
+  import { asideStore } from '../../../../store'
+
   const props = defineProps({
     headers: Array,
     headingScrollTopMapper: Object
@@ -12,6 +14,7 @@
     } = props
 
     contentEl.scrollTo({ top: headingScrollTopMapper[decodeURIComponent(id)], behavior: 'smooth' })
+    asideStore.toggleOpenDropdown()
   }
 </script>
 

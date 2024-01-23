@@ -5,14 +5,19 @@ import {
 import {
   onContentUpdated
 } from 'vitepress'
-import { useData } from '../../../../composables/data'
+import {
+  useHeading
+} from '../../composables/aside'
 import {
   getHeaderStructure
 } from '../../../../composables/outline'
 import { asideStore } from '../../../../store'
 import OutlineItem from './OutlineItem.vue'
 
-const data = useData()
+// const data = useData()
+const {
+  hasHeading
+} = useHeading()
 const headers = shallowRef([])
 const headingScrollTopMapper = shallowRef({})
 
@@ -32,6 +37,12 @@ function makeHeadingScrollTopMapper() {
   return mapper
 }
 
+function handleBackTop() {
+  const contentEl = document.getElementById('content__container__hook')
+  contentEl.scrollTo({ top: 0, behavior: 'smooth' })
+  asideStore.toggleOpenDropdown()
+}
+
 onContentUpdated(() => {
   headers.value = getHeaderStructure()
   headingScrollTopMapper.value = makeHeadingScrollTopMapper()
@@ -40,10 +51,10 @@ onContentUpdated(() => {
 </script>
 
 <template>
-  <div :class="{ mobile__show: asideStore.isOpenDropdown }" class="aside__wrapper">
+  <div :class="{ mobile__show: asideStore.isOpenDropdown, hiddenPC: hasHeading === false }" class="aside__wrapper">
     <div class="aside__container">
       <div class="to__top">
-        <div class="to__top__wrapper">回到顶部</div>
+        <div class="to__top__wrapper" @click="handleBackTop">回到顶部</div>
       </div>
       <div v-if="headers.length > 0" class="aside__container__wrapper">
         <OutlineItem :headers="headers" :heading-scroll-top-mapper="headingScrollTopMapper" />
@@ -58,6 +69,10 @@ onContentUpdated(() => {
   @media (min-width: 768px) {
     .aside__wrapper {
       flex: 0 0 calc(var(--aside-width) + 80px);
+
+      &.hiddenPC {
+        display: none;
+      }
 
       .aside__container {
         position: fixed;
