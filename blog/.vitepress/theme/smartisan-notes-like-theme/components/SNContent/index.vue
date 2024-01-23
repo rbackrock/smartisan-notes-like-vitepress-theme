@@ -6,6 +6,9 @@ import {
   onContentUpdated
 } from 'vitepress'
 import {
+  stepHeight
+} from '../../consts'
+import {
   useIsDesktop
 } from '../../composables/device'
 import ContentAside from './components/Aside/index.vue'
@@ -13,8 +16,8 @@ import ContentAside from './components/Aside/index.vue'
 const {
   isDesktop
 } = useIsDesktop()
-const lineHeightPc = 36
-const lineHeightMobile = 33
+const lineHeightPc = stepHeight.PC
+const lineHeightMobile = stepHeight.MOBILE
 const fixImgHandleFnList = []
 // customBlock 的观察者列表
 const customBlockMutationObserverList = []

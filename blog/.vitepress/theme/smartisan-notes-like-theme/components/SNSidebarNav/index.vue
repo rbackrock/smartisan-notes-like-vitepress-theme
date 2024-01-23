@@ -1,19 +1,36 @@
 <script setup>
-import { computed } from 'vue'
+import {
+  computed,
+  onUnmounted,
+  ref
+} from 'vue'
 import { sidebarStore } from '../../store'
 import {
   useData
 } from '../../composables/data'
 import {
-  useRoute
+  useRoute,
+  onContentUpdated
 } from 'vitepress'
+import {
+  stepHeight
+} from '../../consts'
+import {
+  useIsDesktop
+} from '../../composables/device'
 
 const {
   theme
 } = useData()
+const {
+  isDesktop
+} = useIsDesktop()
 const route = useRoute()
 
 const sidebarList = theme.value?.sidebar || []
+const lineHeightPc = stepHeight.PC
+const lineHeightMobile = stepHeight.MOBILE
+const navListWrapperRef = ref(null)
 
 const currentLink = computed(() => {
   const path = route.path
@@ -33,6 +50,35 @@ const sidebarClassNames = computed(() => {
 function handleClose() {
   sidebarStore.toggleOpenMenu()
 }
+
+function setElementHeight(el, stepHeight) {
+  if (el) {
+    const elHeight = el.offsetHeight
+    if (elHeight !== undefined && elHeight !== 0) {
+      el.style.height = `${Math.ceil(elHeight / stepHeight + 0) * stepHeight}px`
+    }
+  }
+}
+
+function fixContentElementHeight() {
+  const stepHeight = isDesktop.value ? lineHeightPc : lineHeightMobile
+
+  // 所有 li 计算高度
+  const navListWrapperEl = navListWrapperRef.value
+  const navElList = navListWrapperEl.querySelectorAll('li.category, li.item')
+  for (const navEl of navElList) {
+    setElementHeight(navEl, stepHeight)
+  }
+}
+
+onContentUpdated(() => {
+  window.addEventListener('resize', fixContentElementHeight)
+  fixContentElementHeight()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', fixContentElementHeight)
+})
 </script>
 
 <template>
@@ -42,7 +88,7 @@ function handleClose() {
     class="sidebar__container"
     @click.self="handleClose"
   >
-    <div class="sidebar__container__wrapper">
+    <div ref="navListWrapperRef" class="sidebar__container__wrapper">
       <div v-if="sidebarList.length === 0" class="empty">文章列表为空</div>
       <ul :key="groupIndex" v-for="(itemGroup, groupIndex) in sidebarList" class="list">
         <li class="category">{{ itemGroup.category }}</li>
@@ -102,8 +148,9 @@ function handleClose() {
 
         .list {
           .category {
-            height: calc(var(--md-text-height) * 1);
-            line-height: calc(var(--md-text-height) * 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-bottom: 1px var(--sidebar-border-color) solid;
             text-align: center;
             font-size: 1em;
@@ -122,10 +169,10 @@ function handleClose() {
             }
 
             .item__wrapper {
-              height: calc(var(--md-text-height) * 1);
+              height: 100%;
               border-bottom: 1px var(--sidebar-border-color) solid;
               position: relative;
-              padding: 0 0 0 20px;
+              padding: 0 20px 0 20px;
 
               .title {
                 display: flex;
@@ -138,8 +185,8 @@ function handleClose() {
                 color: var(--sidebar-title-text);
                 word-break: break-all;
                 word-wrap: break-word;
-                white-space: nowrap;
-                text-overflow: ellipsis;
+                // white-space: nowrap;
+                // text-overflow: ellipsis;
                 cursor: default;
               }
             }
@@ -197,8 +244,10 @@ function handleClose() {
 
         .list {
           .category {
-            height: var(--md-text-height);
-            line-height: var(--md-text-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
             border-bottom: 1px var(--sidebar-border-color) solid;
             text-align: center;
             font-size: 1em;
@@ -217,10 +266,10 @@ function handleClose() {
             }
 
             .item__wrapper {
-              height: var(--md-text-height);
+              height: 100%;
               border-bottom: 1px var(--sidebar-border-color) solid;
               position: relative;
-              padding: 0 0 0 20px;
+              padding: 0 20px 0 20px;
 
               .title {
                 display: flex;
@@ -233,8 +282,8 @@ function handleClose() {
                 color: var(--sidebar-title-text);
                 word-break: break-all;
                 word-wrap: break-word;
-                white-space: nowrap;
-                text-overflow: ellipsis;
+                // white-space: nowrap;
+                // text-overflow: ellipsis;
                 cursor: default;
               }
             }

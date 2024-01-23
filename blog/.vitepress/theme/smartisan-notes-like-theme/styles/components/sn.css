@@ -81,7 +81,6 @@
 
 .sn div[class*='language-'] {
   position: relative;
-  width: calc(100vw - var(--sidebar-width) - var(--aside-width) - 80px - var(--content-wrapper-padding-left) - var(--content-wrapper-padding-right));
   border-radius: 8px;
   background-color: hsl(30, 20%, 25%);
   /* background-color: #48284A; */
@@ -258,7 +257,6 @@
 
 @media (max-width: 768px) {
   .sn div[class*='language-'] {
-    width: calc(100vw - var(--content-wrapper-padding-left) - var(--content-wrapper-padding-right));
     margin-top: var(--md-text-height-mobile);
     margin-bottom: var(--md-text-height-mobile);
   }
@@ -268,7 +266,6 @@
  * group code block
  * -------------------------------------------------------------------------- */
 .sn .vp-code-group {
-  width: calc(100vw - var(--sidebar-width) - var(--aside-width) - 80px - var(--content-wrapper-padding-left) - var(--content-wrapper-padding-right));
   margin-top: var(--md-text-height);
   margin-bottom: calc(var(--md-text-height) * 1);
 }
@@ -349,7 +346,6 @@
 
 @media (max-width: 768px) {
   .sn .vp-code-group {
-    width: calc(100vw - var(--content-wrapper-padding-left) - var(--content-wrapper-padding-right));
     margin-top: var(--md-text-height-mobile);
     margin-bottom: var(--md-text-height-mobile);
   }
