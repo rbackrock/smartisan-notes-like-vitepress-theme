@@ -1,6 +1,7 @@
 <script setup>
 import {
-  onUnmounted
+  onUnmounted,
+  ref
 } from 'vue'
 import {
   onContentUpdated
@@ -16,6 +17,7 @@ import ContentAside from './components/Aside/index.vue'
 const {
   isDesktop
 } = useIsDesktop()
+const hasHeading = ref(true)
 const lineHeightPc = stepHeight.PC
 const lineHeightMobile = stepHeight.MOBILE
 const fixImgHandleFnList = []
@@ -136,6 +138,11 @@ function fixContentElementHeight() {
 onContentUpdated(() => {
   window.addEventListener('resize', fixContentElementHeight)
   fixContentElementHeight()
+
+  const headingElList = document.querySelectorAll('.sn.content__wrapper :where(h1, h2, h3, h4, h5, h6)')
+  if (headingElList.length === 0) {
+    hasHeading.value = false
+  }
 })
 
 onUnmounted(() => {
@@ -159,7 +166,7 @@ onUnmounted(() => {
   <div id="content__container__hook" class="content__container">
     <div  class="content__container__wrapper">
       <Content ref="el" class="sn content__wrapper" />
-      <ContentAside />
+      <ContentAside v-show="hasHeading" />
     </div>
   </div>
 </template>
