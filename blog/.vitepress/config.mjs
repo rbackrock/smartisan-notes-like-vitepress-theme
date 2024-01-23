@@ -13,6 +13,10 @@ export default defineConfig({
       { rel: 'icon', href: '/favicon.ico' }
     ]
   ],
+  markdown: {
+    lineNumbers: true,
+    math: true
+  },
   themeConfig: {
     sidebar: [
       {

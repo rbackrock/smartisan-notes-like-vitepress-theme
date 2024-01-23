@@ -84,5 +84,6 @@
 }
 
 :root {
-  /* custom-block */
+  /* code block */
+  --md-code-lineheight: 27.2px;
 }

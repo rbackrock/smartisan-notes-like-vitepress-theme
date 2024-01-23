@@ -16,7 +16,10 @@ const {
 const lineHeightPc = 36
 const lineHeightMobile = 33
 const fixImgHandleFnList = []
+// customBlock 的观察者列表
 const customBlockMutationObserverList = []
+// group 形式的 code block 的观察者列表
+const groupCodeBlockMutationObserverList = []
 
 function setElementHeight(el, stepHeight) {
   if (el) {
@@ -27,15 +30,47 @@ function setElementHeight(el, stepHeight) {
   }
 }
 
+function setGroupCodeBlockWrapperElementHeight(groupCodeBlockEl, activeCodeblockEl, stepHeight) {
+  const groupCodeBlockHeight = groupCodeBlockEl.offsetHeight
+  const shouldGroupCodeBlockHeight = `${Math.ceil(groupCodeBlockHeight / stepHeight + 0) * stepHeight}`
+  const tabHeight = groupCodeBlockEl.querySelector('.tabs').offsetHeight
+
+  activeCodeblockEl.style.height = `${shouldGroupCodeBlockHeight - tabHeight}px`
+}
+
 function fixContentElementHeight() {
   const stepHeight = isDesktop.value ? lineHeightPc : lineHeightMobile
 
   /**
-   * 代码块
+   * 一般代码块
    */
   const codeBlockListEl = document.querySelectorAll(`.sn.content__wrapper div[class*='language-']`)
   for (const codeBlockEl of codeBlockListEl) {
-    setElementHeight(codeBlockEl, stepHeight)
+    const parentElementClassName = codeBlockEl.parentElement.className
+    if (parentElementClassName === '') {
+      setElementHeight(codeBlockEl, stepHeight)
+    }
+  }
+
+  /**
+   * group 代码块
+   */
+  const groupCodeBlockListEl = document.querySelectorAll(`.sn.content__wrapper .vp-code-group`)
+  for (const groupCodeBlockEl of groupCodeBlockListEl) {
+    const groupCodeBlockMutationObserver = new MutationObserver((mutationsList, observer) => {
+      const [
+        mutation
+      ] = mutationsList
+      const targetEl = mutation.target
+      const groupCodeWrapperEl = targetEl.parentElement.parentElement
+      const currentCodeBlockEl = groupCodeWrapperEl.querySelector(`div[class*='language-'].active`)
+
+      setGroupCodeBlockWrapperElementHeight(groupCodeWrapperEl, currentCodeBlockEl, stepHeight)
+    })
+    groupCodeBlockMutationObserver.observe(groupCodeBlockEl.querySelector(`div[class*='language-']`), { attributeFilter: ['class'] })
+    groupCodeBlockMutationObserverList.push(groupCodeBlockMutationObserver)
+
+    setGroupCodeBlockWrapperElementHeight(groupCodeBlockEl, groupCodeBlockEl.querySelector(`div[class*='language-'].active`), stepHeight)
   }
 
   /**
@@ -47,7 +82,7 @@ function fixContentElementHeight() {
     const theadHeight = tableEl.querySelector('thead').offsetHeight
 
     if (tableHeight !== undefined && tableHeight !== 0) {
-      const calcHeight = Math.ceil(tableHeight / stepHeight + 0.001) * stepHeight
+      const calcHeight = Math.ceil(tableHeight / stepHeight + 0) * stepHeight
       tableEl.style.height = `${calcHeight}px`
       tableEl.querySelector('tbody').style.height = `${calcHeight - theadHeight - 1}px`
     }
@@ -83,6 +118,16 @@ function fixContentElementHeight() {
       customBlockMutationObserverList.push(customBlockMutationObserver)
     }
   }
+
+  /**
+   * 数学公式
+   */
+  const mathListEl = document.querySelectorAll(`.sn.content__wrapper .MathJax`)
+  for (const mathEl of mathListEl) {
+    if (mathEl.parentElement.nodeName === 'DIV') {
+      setElementHeight(mathEl, stepHeight)
+    }
+  }
 }
 
 onContentUpdated(() => {
@@ -99,6 +144,10 @@ onUnmounted(() => {
 
   for (const customBlockMutationObserver of customBlockMutationObserverList) {
     customBlockMutationObserver.disconnect()
+  }
+
+  for (const groupCodeBlockMutationObserver of groupCodeBlockMutationObserverList) {
+    groupCodeBlockMutationObserver.disconnect()
   }
 })
 </script>
@@ -143,6 +192,7 @@ onUnmounted(() => {
         background-size: 100% var(--md-text-height);
 
         .content__wrapper {
+          width: 100%;
           min-height: calc(100vh - var(--header-height));
           flex: 1;
           padding-top: calc(1 * var(--md-text-height));
@@ -190,6 +240,7 @@ onUnmounted(() => {
         background-size: 100% var(--md-text-height-mobile);
 
         .content__wrapper {
+          width: 100%;
           min-height: calc(100vh - var(--header-height) * 2);
           flex: 1;
           padding-top: calc(1 * var(--md-text-height-mobile));
