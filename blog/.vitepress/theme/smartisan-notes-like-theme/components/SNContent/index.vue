@@ -195,6 +195,9 @@ onUnmounted(() => {
         background-size: 100% var(--md-text-height);
 
         .content__wrapper {
+          position: relative;
+          display: flex;
+          justify-content: center;
           width: 100%;
           min-height: calc(100vh - var(--header-height));
           flex: 1;
@@ -206,6 +209,10 @@ onUnmounted(() => {
           background-image: url(./note_detail_edge.jpg);
           background-repeat: repeat-y;
           background-size: auto var(--md-text-height);
+
+          & :first-child {
+            max-width: 1000px;
+          }
         }
       }
     }
