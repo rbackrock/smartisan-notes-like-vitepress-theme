@@ -250,18 +250,22 @@ onUnmounted(() => {
         background-position: left top;
         background-size: 100% var(--md-text-height-mobile);
 
-        .content__block {
+        .content__block__wrapper {
           width: 100%;
-          min-height: calc(100vh - var(--header-height) * 2);
-          flex: 1;
-          padding-top: calc(1 * var(--md-text-height-mobile));
-          padding-right: var(--content-wrapper-padding-right-mobile);
-          padding-left: var(--content-wrapper-padding-left-mobile);
-          padding-bottom: calc(3 * var(--md-text-height-mobile));
 
-          background-image: url(./note_detail_edge.jpg);
-          background-repeat: repeat-y;
-          background-size: auto var(--md-text-height-mobile);
+          .content__block {
+            width: 100%;
+            min-height: calc(100vh - var(--header-height) * 2);
+            flex: 1;
+            padding-top: calc(1 * var(--md-text-height-mobile));
+            padding-right: var(--content-wrapper-padding-right-mobile);
+            padding-left: var(--content-wrapper-padding-left-mobile);
+            padding-bottom: calc(3 * var(--md-text-height-mobile));
+
+            background-image: url(./note_detail_edge.jpg);
+            background-repeat: repeat-y;
+            background-size: auto var(--md-text-height-mobile);
+          }
         }
       }
     }
