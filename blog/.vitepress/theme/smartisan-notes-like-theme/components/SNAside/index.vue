@@ -1,5 +1,6 @@
 <script setup>
 import {
+  ref,
   shallowRef
 } from 'vue'
 import {
@@ -7,12 +8,20 @@ import {
 } from 'vitepress'
 import {
   getHeaderStructure
-} from '../../../../composables/outline'
-import { asideStore } from '../../../../store'
+} from './composables/outline'
+import {
+  useAside
+} from './composables/aside'
+import { asideStore } from '../../store'
 import OutlineItem from './OutlineItem.vue'
 
 const headers = shallowRef([])
 const headingScrollTopMapper = shallowRef({})
+const isShow = ref(false)
+const {
+  contentRightValue,
+  asideHeightValue
+} = useAside()
 
 function makeHeadingScrollTopMapper() {
   const mapper = {}
@@ -36,6 +45,10 @@ function handleBackTop() {
   asideStore.toggleOpenDropdown()
 }
 
+function toggleShow() {
+  isShow.value = !isShow.value
+}
+
 onContentUpdated(() => {
   headers.value = getHeaderStructure()
   headingScrollTopMapper.value = makeHeadingScrollTopMapper()
@@ -43,7 +56,10 @@ onContentUpdated(() => {
 </script>
 
 <template>
-  <div :class="{ mobile__show: asideStore.isOpenDropdown, hiddenPC: headers.length === 0 }" class="aside__wrapper">
+  <div
+    :class="{ mobile__show: asideStore.isOpenDropdown, hiddenPC: headers.length === 0, show: isShow }"
+    id="aside__wrapper__hook" class="aside__wrapper"
+  >
     <div class="aside__container">
       <div class="to__top">
         <div class="to__top__wrapper" @click="handleBackTop">回到顶部</div>
@@ -51,30 +67,31 @@ onContentUpdated(() => {
       <div v-if="headers.length > 0" class="aside__container__wrapper">
         <OutlineItem :headers="headers" :heading-scroll-top-mapper="headingScrollTopMapper" />
       </div>
-
-      <div v-if="headers.length > 0" class="tape t1" />
     </div>
+
+    <div class="bookmark" @click="toggleShow" />
   </div>
 </template>
 
 <style lang="less" scoped>
   @media (min-width: 768px) {
     .aside__wrapper {
-      position: fixed;
-      top: 9vh;
-      right: 0;
-      // flex: 0 0 calc(var(--aside-width) + 80px);
+      position: absolute;
+      // top: 0;
+      bottom: 0;
+      left: v-bind(contentRightValue);
+      z-index: -1;
+      transition: transform 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+      &.show {
+        transform: translate(0, v-bind(asideHeightValue));
+      }
 
       &.hiddenPC {
         display: none;
       }
 
       .aside__container {
-        position: absolute;
-        // top: 16vh;
-        // left: 10%;
-        // z-index: 9;
-
         .to__top {
           display: none;
         }
@@ -83,7 +100,7 @@ onContentUpdated(() => {
           width: var(--aside-width);
           padding: 26px 26px;
           font-size: 0.8em;
-          border-radius: 3px;
+          border-radius: 0 0 3px 3px;
           background-image: linear-gradient(#5f5450, #716661);
           box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.1);
           color: #fff;
@@ -102,34 +119,19 @@ onContentUpdated(() => {
             }
           }
         }
+      }
 
-        .tape {
-          position: absolute;
-          width: 29px;
-          height: 45px;
-          background-image: url(./tape.png);
-          background-repeat: no-repeat;
-          background-position: 100% 100%;
-          background-size: cover;
-
-          &.t1 {
-            top: -25px;
-            left: 50%;
-            transform: rotate(352deg) translate(-50%, 0);
-          }
-
-          &.t2 {
-            top: -9px;
-            right: -20px;
-            transform: rotate(62deg);
-          }
-
-          &.t3 {
-            bottom: -36px;
-            right: 46%;
-            transform: rotate(330deg);
-          }
-        }
+      .bookmark {
+        position: absolute;
+        bottom: -31px;
+        right: 9px;
+        width: 36px;
+        height: 36px;
+        background-image: url('./bookmark.svg#svgView(preserveAspectRatio(none)');
+        background-repeat: no-repeat;
+        background-position: 100% 100%;
+        background-size: cover;
+        cursor: pointer;
       }
     }
   }
@@ -201,6 +203,10 @@ onContentUpdated(() => {
         transform: translate(-50%, 0);
         transition: all 0.25s, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
       }
+    }
+
+    .bookmark {
+      display: none;
     }
   }
 </style>

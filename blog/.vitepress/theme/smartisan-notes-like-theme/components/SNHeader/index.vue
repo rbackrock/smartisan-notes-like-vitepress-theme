@@ -8,6 +8,7 @@ import {
   sidebarStore,
   asideStore
 } from '../../store'
+import ContentAside from '../SNAside/index.vue'
 
 const { frontmatter } = useData()
 
@@ -33,6 +34,8 @@ function handleOpenCatalog() {
         <div class="button__container"><span class="button">关于</span></div>
       </div>
     </div>
+
+    <ContentAside />
   </header>
   <div class="control">
     <div class="control__wrapper">
@@ -55,6 +58,7 @@ function handleOpenCatalog() {
 <style lang="less" scoped>
   @media (min-width: 768px) {
     .header {
+      position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;

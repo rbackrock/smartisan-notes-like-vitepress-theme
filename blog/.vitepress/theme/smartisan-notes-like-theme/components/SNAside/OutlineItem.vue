@@ -1,5 +1,5 @@
 <script setup>
-  import { asideStore } from '../../../../store'
+  import { asideStore } from '../../store'
 
   const props = defineProps({
     headers: Array,

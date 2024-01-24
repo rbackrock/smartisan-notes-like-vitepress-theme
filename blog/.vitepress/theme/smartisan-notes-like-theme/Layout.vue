@@ -43,12 +43,13 @@ const { frontmatter } = useData()
       z-index: var(--layout-zindex);
 
       .body__container {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: stretch;
         width: 100%;
         height: calc(100% - var(--header-height));
-        z-index: 1;
+        z-index: var(--body-container-zindex);
       }
     }
   }
