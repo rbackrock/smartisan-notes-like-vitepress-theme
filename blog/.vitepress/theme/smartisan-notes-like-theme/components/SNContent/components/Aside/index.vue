@@ -14,7 +14,6 @@ import {
 import { asideStore } from '../../../../store'
 import OutlineItem from './OutlineItem.vue'
 
-// const data = useData()
 const {
   hasHeading
 } = useHeading()
@@ -46,7 +45,6 @@ function handleBackTop() {
 onContentUpdated(() => {
   headers.value = getHeaderStructure()
   headingScrollTopMapper.value = makeHeadingScrollTopMapper()
-
 })
 </script>
 
@@ -68,6 +66,7 @@ onContentUpdated(() => {
 <style lang="less" scoped>
   @media (min-width: 768px) {
     .aside__wrapper {
+      position: relative;
       flex: 0 0 calc(var(--aside-width) + 80px);
 
       &.hiddenPC {
@@ -75,9 +74,9 @@ onContentUpdated(() => {
       }
 
       .aside__container {
-        position: fixed;
+        position: absolute;
         top: 16vh;
-        right: 64px;
+        left: 10%;
         z-index: 9;
 
         .to__top {

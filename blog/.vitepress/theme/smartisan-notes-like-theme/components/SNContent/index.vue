@@ -47,7 +47,7 @@ function fixContentElementHeight() {
   /**
    * 一般代码块
    */
-  const codeBlockListEl = document.querySelectorAll(`.sn.content__wrapper div[class*='language-']`)
+  const codeBlockListEl = document.querySelectorAll(`.sn.content__block div[class*='language-']`)
   for (const codeBlockEl of codeBlockListEl) {
     const parentElementClassName = codeBlockEl.parentElement.className
     if (parentElementClassName === '') {
@@ -58,7 +58,7 @@ function fixContentElementHeight() {
   /**
    * group 代码块
    */
-  const groupCodeBlockListEl = document.querySelectorAll(`.sn.content__wrapper .vp-code-group`)
+  const groupCodeBlockListEl = document.querySelectorAll(`.sn.content__block .vp-code-group`)
   for (const groupCodeBlockEl of groupCodeBlockListEl) {
     const groupCodeBlockMutationObserver = new MutationObserver((mutationsList, observer) => {
       const [
@@ -79,7 +79,7 @@ function fixContentElementHeight() {
   /**
    * 表格
    */
-  const tableListEl = document.querySelectorAll(`.sn.content__wrapper table`)
+  const tableListEl = document.querySelectorAll(`.sn.content__block table`)
   for (const tableEl of tableListEl) {
     const tableHeight = tableEl.offsetHeight
     const theadHeight = tableEl.querySelector('thead').offsetHeight
@@ -94,7 +94,7 @@ function fixContentElementHeight() {
   /**
    * img 图片
    */
-  const imgListEl = document.querySelectorAll(`.sn.content__wrapper img`)
+  const imgListEl = document.querySelectorAll(`.sn.content__block img`)
   for (const imgEl of imgListEl) {
     const currentFixImgHeightFn = setElementHeight.bind(null, imgEl, stepHeight)
     fixImgHandleFnList.push({
@@ -107,7 +107,7 @@ function fixContentElementHeight() {
   /**
    * custom-block
    */
-  const customBlockListEl = document.querySelectorAll(`.sn.content__wrapper .custom-block`)
+  const customBlockListEl = document.querySelectorAll(`.sn.content__block .custom-block`)
   for (const customBlockEl of customBlockListEl) {
     setElementHeight(customBlockEl, stepHeight)
 
@@ -125,7 +125,7 @@ function fixContentElementHeight() {
   /**
    * 数学公式
    */
-  const mathListEl = document.querySelectorAll(`.sn.content__wrapper .MathJax`)
+  const mathListEl = document.querySelectorAll(`.sn.content__block .MathJax`)
   for (const mathEl of mathListEl) {
     if (mathEl.parentElement.nodeName === 'DIV') {
       setElementHeight(mathEl, stepHeight)
@@ -158,8 +158,10 @@ onUnmounted(() => {
 <template>
   <div id="content__container__hook" class="content__container">
     <div  class="content__container__wrapper">
-      <Content ref="el" class="sn content__wrapper" />
-      <ContentAside />
+      <div class="content__block__wrapper">
+        <Content ref="el" class="sn content__block" />
+        <ContentAside />
+      </div>
     </div>
   </div>
 </template>
@@ -183,9 +185,7 @@ onUnmounted(() => {
 
       .content__container__wrapper {
         position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        
         min-height: calc(100vh - var(--header-height));
 
         background-color: var(--content-bg);
@@ -194,13 +194,13 @@ onUnmounted(() => {
         background-position: left top;
         background-size: 100% var(--md-text-height);
 
-        .content__wrapper {
-          position: relative;
+        .content__block__wrapper {
           display: flex;
           justify-content: center;
+          align-items: flex-start;
           width: 100%;
           min-height: calc(100vh - var(--header-height));
-          flex: 1;
+          
           padding-top: calc(1 * var(--md-text-height));
           padding-right: var(--content-wrapper-padding-right);
           padding-left: var(--content-wrapper-padding-left);
@@ -210,7 +210,8 @@ onUnmounted(() => {
           background-repeat: repeat-y;
           background-size: auto var(--md-text-height);
 
-          & :first-child {
+          .content__block {
+            flex: 1;
             max-width: 1000px;
           }
         }
@@ -249,7 +250,7 @@ onUnmounted(() => {
         background-position: left top;
         background-size: 100% var(--md-text-height-mobile);
 
-        .content__wrapper {
+        .content__block {
           width: 100%;
           min-height: calc(100vh - var(--header-height) * 2);
           flex: 1;
