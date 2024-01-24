@@ -5,7 +5,7 @@ import SNSidebar from './components/SNSidebarNav/index.vue'
 import SNContent from './components/SNContent/index.vue'
 import SNContent3d from './components/SNContent3d/index.vue'
 
-const { frontmatter } = useData()
+const { frontmatter, page } = useData()
 </script>
 
 <template>
@@ -16,7 +16,10 @@ const { frontmatter } = useData()
       <SNContent3d />
     </div>
   </div>
-  <div v-else class="layout__container doc">
+  <div v-else-if="page.isNotFound">
+    404
+  </div>
+  <div v-else class="layout__container">
     <SNHeader />
     <div class="body__container">
       <SNSidebar />
@@ -43,6 +46,11 @@ const { frontmatter } = useData()
       z-index: var(--layout-zindex);
 
       .body__container {
+        max-width: 2000px;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+
         position: relative;
         display: flex;
         justify-content: space-between;

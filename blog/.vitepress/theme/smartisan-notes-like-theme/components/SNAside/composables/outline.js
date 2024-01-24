@@ -1,6 +1,6 @@
 export function getHeaderStructure() {
   const headers = [
-    ...document.querySelectorAll('.layout__container.doc :where(h1, h2, h3, h4, h5, h6)')
+    ...document.querySelectorAll('.layout__container :where(h1, h2, h3, h4, h5, h6)')
   ]
   .filter(el => el.id && el.hasChildNodes())
   .map(el => {
