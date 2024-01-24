@@ -6,17 +6,11 @@ import {
   onContentUpdated
 } from 'vitepress'
 import {
-  useHeading
-} from '../../composables/aside'
-import {
   getHeaderStructure
 } from '../../../../composables/outline'
 import { asideStore } from '../../../../store'
 import OutlineItem from './OutlineItem.vue'
 
-const {
-  hasHeading
-} = useHeading()
 const headers = shallowRef([])
 const headingScrollTopMapper = shallowRef({})
 
@@ -49,7 +43,7 @@ onContentUpdated(() => {
 </script>
 
 <template>
-  <div :class="{ mobile__show: asideStore.isOpenDropdown, hiddenPC: hasHeading === false }" class="aside__wrapper">
+  <div :class="{ mobile__show: asideStore.isOpenDropdown, hiddenPC: headers.length === 0 }" class="aside__wrapper">
     <div class="aside__container">
       <div class="to__top">
         <div class="to__top__wrapper" @click="handleBackTop">回到顶部</div>
@@ -66,8 +60,10 @@ onContentUpdated(() => {
 <style lang="less" scoped>
   @media (min-width: 768px) {
     .aside__wrapper {
-      position: relative;
-      flex: 0 0 calc(var(--aside-width) + 80px);
+      position: fixed;
+      top: 9vh;
+      right: 0;
+      // flex: 0 0 calc(var(--aside-width) + 80px);
 
       &.hiddenPC {
         display: none;
@@ -75,9 +71,9 @@ onContentUpdated(() => {
 
       .aside__container {
         position: absolute;
-        top: 16vh;
-        left: 10%;
-        z-index: 9;
+        // top: 16vh;
+        // left: 10%;
+        // z-index: 9;
 
         .to__top {
           display: none;

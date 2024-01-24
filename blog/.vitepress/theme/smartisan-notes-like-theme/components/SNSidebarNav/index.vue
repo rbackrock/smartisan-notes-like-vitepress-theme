@@ -67,6 +67,7 @@ function fixContentElementHeight() {
   const navListWrapperEl = navListWrapperRef.value
   const navElList = navListWrapperEl.querySelectorAll('li.category, li.item')
   for (const navEl of navElList) {
+    navEl.style.height = 'auto'
     setElementHeight(navEl, stepHeight)
   }
 }

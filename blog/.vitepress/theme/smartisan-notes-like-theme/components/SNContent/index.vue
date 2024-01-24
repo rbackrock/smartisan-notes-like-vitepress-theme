@@ -11,11 +11,17 @@ import {
 import {
   useIsDesktop
 } from '../../composables/device'
+import {
+  useHeading
+} from './composables/aside'
 import ContentAside from './components/Aside/index.vue'
 
 const {
   isDesktop
 } = useIsDesktop()
+const {
+  hasHeading
+} = useHeading()
 const lineHeightPc = stepHeight.PC
 const lineHeightMobile = stepHeight.MOBILE
 const fixImgHandleFnList = []
@@ -159,7 +165,7 @@ onUnmounted(() => {
   <div id="content__container__hook" class="content__container">
     <div  class="content__container__wrapper">
       <div class="content__block__wrapper">
-        <Content ref="el" class="sn content__block" />
+        <Content ref="el" class="sn content__block" :class="{ has__aside: hasHeading }" />
         <ContentAside />
       </div>
     </div>
@@ -185,7 +191,6 @@ onUnmounted(() => {
 
       .content__container__wrapper {
         position: relative;
-        
         min-height: calc(100vh - var(--header-height));
 
         background-color: var(--content-bg);
@@ -212,7 +217,11 @@ onUnmounted(() => {
 
           .content__block {
             flex: 1;
-            max-width: 1000px;
+            max-width: 1300px;
+
+            &.has__aside {
+              padding: 0 300px 0 0;
+            }
           }
         }
       }
