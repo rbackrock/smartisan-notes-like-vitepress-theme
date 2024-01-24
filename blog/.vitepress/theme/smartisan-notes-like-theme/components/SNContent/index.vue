@@ -209,7 +209,7 @@ onUnmounted(() => {
 
           .content__block {
             flex: 1;
-            max-width: 1300px;
+            max-width: 900px;
           }
         }
       }

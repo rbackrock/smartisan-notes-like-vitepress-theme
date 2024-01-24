@@ -58,7 +58,7 @@
 
 /* sidebar */
 :root {
-  --sidebar-width: 240px;
+  --sidebar-width: 16vw;
   --sidebar-width-mobile: 76vw;
   --sidebar-border-color: #dcd6ca;
   --sidebar-item-active-bg: #f1ece1;
