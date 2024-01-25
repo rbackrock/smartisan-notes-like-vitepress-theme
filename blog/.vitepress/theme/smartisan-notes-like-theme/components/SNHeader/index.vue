@@ -10,7 +10,7 @@ import {
 } from '../../store'
 import ContentAside from '../SNAside/index.vue'
 
-const { frontmatter } = useData()
+const { frontmatter, theme, page } = useData()
 
 function handleOpenMenu() {
   sidebarStore.toggleOpenMenu()
@@ -24,14 +24,13 @@ function handleOpenCatalog() {
 <template>
   <header class="header">
     <div class="who__container">
-      <div class="who__wrapper"><span>[rback@blog ~] # </span><DynamicUnderline /></div>
+      <div class="who__wrapper"><span>[{{ theme.who || 'who' }}@blog ~] # </span><DynamicUnderline /></div>
     </div>
     <div class="buttons">
-      <div class="button__wrapper home">
-        <div class="button__container"><span class="button">首页</span></div>
-      </div>
-      <div class="button__wrapper about">
-        <div class="button__container"><span class="button">关于</span></div>
+      <div v-for="btn in theme.nav" class="button__wrapper">
+        <a :href="btn.link">
+          <div class="button__container"><span class="button">{{ btn.text }}</span></div>
+        </a>
       </div>
     </div>
 
@@ -44,7 +43,7 @@ function handleOpenCatalog() {
           <span><IconAlignLeft class="menu-icon" /></span><span>文章</span>
         </div>
       </div>
-      <div v-if="frontmatter.layout !== '3d'" class="p2">
+      <div v-if="(page.isNotFound || false) === false && frontmatter.layout !== 'empty'" class="p2">
         <div class="p2__wrapper button" @click="handleOpenCatalog">
           <span>目录</span>
           <span v-if="asideStore.isOpenDropdown === false"><IconChevronRight class="menu-icon" /></span>
@@ -76,9 +75,10 @@ function handleOpenCatalog() {
       .buttons {
         .button__wrapper {
           display: inline-block;
+          padding: 0 0.9vw 0 0;
 
-          &.home {
-            padding: 0 0.9vw 0 0;
+          &:last-child {
+            padding: 0 0 0 0;
           }
 
           .button__container {
@@ -134,9 +134,10 @@ function handleOpenCatalog() {
       .buttons {
         .button__wrapper {
           display: inline-block;
+          padding: 0 0.9vw 0 0;
 
-          &.home {
-            padding: 0 0.9vw 0 0;
+          &:last-child {
+            padding: 0 0 0 0;
           }
 
           .button__container {

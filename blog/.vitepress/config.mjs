@@ -18,17 +18,19 @@ export default defineConfig({
     math: true
   },
   themeConfig: {
+    who: 'rbackly',
+    notFoundMessage: 'Balls, 发生404错误了',
+    icp: '滇ICP备18008965号-1',
+    nav: [
+      { text: '首页', link: '/' }
+    ],
     sidebar: [
       {
         category: '这是分类',
         items: [
           {
-            title: '这是标题',
-            link: '/test'
-          },
-          {
-            title: '这是标题1',
-            link: '/test1'
+            title: 'Markdown 示例',
+            link: '/example'
           }
         ]
       }

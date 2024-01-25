@@ -14,6 +14,7 @@
   outline: none;
   line-height: var(--md-text-height-mobile);
   font-size: 1em;
+  margin: var(--md-text-height-mobile) 0 0 0;
 }
 
 .sn h1 {
@@ -36,6 +37,7 @@
   .sn h5,
   .sn h6 {
     line-height: var(--md-text-height);
+    margin: var(--md-text-height) 0 0 0;
   }
 
   .sn h1 {
@@ -49,6 +51,15 @@
   .sn h3 {
     font-size: 1.2em;
   }
+}
+
+.sn div h1:first-child,
+.sn div h2:first-child,
+.sn div h3:first-child,
+.sn div h4:first-child,
+.sn div h5:first-child,
+.sn div h6:first-child {
+  margin-top: 0;
 }
 
 /**
@@ -356,7 +367,7 @@
  * -------------------------------------------------------------------------- */
 
 .sn table {
-  /* margin-top: var(--md-text-height); */
+  margin-top: var(--md-text-height);
   margin-bottom: calc(var(--md-text-height) * 1);
   border-collapse: collapse;
   overflow-x: auto;
@@ -378,7 +389,7 @@
 
 @media (max-width: 768px) {
   .sn table {
-    /* margin-top: var(--md-text-height-mobile); */
+    margin-top: var(--md-text-height-mobile);
     margin-bottom: calc(var(--md-text-height-mobile) * 1);
   }
 }
@@ -506,23 +517,35 @@
 }
 
 .sn .custom-block.info {
-  background: #eff0f3;
+  background: rgba(142, 150, 170, 0.14);
 }
 
 .sn .custom-block.tip {
-  background: #e9eafe;
+  background: rgba(100, 108, 255, 0.14);
 }
 
 .sn .custom-block.warning {
-  background: #fbf5e4;
+  background: rgba(234, 179, 8, 0.14);
 }
 
 .sn .custom-block.danger {
-  background: #fbe6e9;
+  background: rgba(244, 63, 94, 0.14);
+}
+
+.sn .custom-block.note {
+  background: rgba(142, 150, 170, 0.14);
+}
+
+.sn .custom-block.important {
+  background: rgba(159, 122, 234, 0.14);
+}
+
+.sn .custom-block.caution {
+  background: rgba(244, 63, 94, 0.14);
 }
 
 .sn .custom-block.details {
-  background: #eff0f3;
+  background: rgba(142, 150, 170, 0.14);
 }
 
 .sn .custom-block.details summary {
@@ -546,8 +569,9 @@
  * math
  * -------------------------------------------------------------------------- */
 .sn>div>.MathJax {
-  display: flex !important;
+  /* display: flex !important;
   justify-content: center !important;
-  align-items: center !important;
+  align-items: center !important; */
   margin: 0 !important;
+  padding: 1em 0;
 }

@@ -1,42 +1,30 @@
 <script setup>
 import {
-  computed,
-  onUnmounted,
-  ref
+  computed
 } from 'vue'
+import {
+  useRoute
+} from 'vitepress'
 import { sidebarStore } from '../../store'
 import {
   useData
 } from '../../composables/data'
 import {
-  useRoute,
-  onContentUpdated
-} from 'vitepress'
-import {
-  stepHeight
-} from '../../consts'
-import {
-  useIsDesktop
-} from '../../composables/device'
+  useCalcFIxSidebarElementHeight
+} from '../../composables/sidebar'
 
 const {
   theme
 } = useData()
-const {
-  isDesktop
-} = useIsDesktop()
 const route = useRoute()
-
 const sidebarList = theme.value?.sidebar || []
-const lineHeightPc = stepHeight.PC
-const lineHeightMobile = stepHeight.MOBILE
-const navListWrapperRef = ref(null)
-
 const currentLink = computed(() => {
   const path = route.path
   const dotIndex = path.lastIndexOf('.')
   return path.substring(0, dotIndex)
 })
+
+useCalcFIxSidebarElementHeight()
 
 const sidebarClassNames = computed(() => {
   const classNames = []
@@ -50,38 +38,6 @@ const sidebarClassNames = computed(() => {
 function handleClose() {
   sidebarStore.toggleOpenMenu()
 }
-
-function setElementHeight(el, stepHeight) {
-  if (el) {
-    const elHeight = el.offsetHeight
-    if (elHeight !== undefined && elHeight !== 0) {
-      el.style.height = `${Math.ceil(elHeight / stepHeight + 0) * stepHeight}px`
-    }
-  }
-}
-
-function fixContentElementHeight() {
-  const stepHeight = isDesktop.value ? lineHeightPc : lineHeightMobile
-
-  // 所有 li 计算高度
-  const navListWrapperEl = navListWrapperRef.value
-  const navElList = navListWrapperEl.querySelectorAll('li.category, li.item')
-  for (const navEl of navElList) {
-    navEl.style.height = 'auto'
-    setElementHeight(navEl, stepHeight)
-  }
-}
-
-onContentUpdated(() => {
-  window.addEventListener('resize', fixContentElementHeight)
-  fixContentElementHeight()
-
-  console.log('run')
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', fixContentElementHeight)
-})
 </script>
 
 <template>
@@ -91,7 +47,7 @@ onUnmounted(() => {
     class="sidebar__container"
     @click.self="handleClose"
   >
-    <div ref="navListWrapperRef" class="sidebar__container__wrapper">
+    <div id="sidebar__container__wrapper__hook" class="sidebar__container__wrapper">
       <div v-if="sidebarList.length === 0" class="empty">文章列表为空</div>
       <ul :key="groupIndex" v-for="(itemGroup, groupIndex) in sidebarList" class="list">
         <li class="category">{{ itemGroup.category }}</li>
