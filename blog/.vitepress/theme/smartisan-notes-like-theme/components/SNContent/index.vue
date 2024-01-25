@@ -69,8 +69,11 @@ function fixContentElementHeight() {
 
       setGroupCodeBlockWrapperElementHeight(groupCodeWrapperEl, currentCodeBlockEl, stepHeight)
     })
-    groupCodeBlockMutationObserver.observe(groupCodeBlockEl.querySelector(`div[class*='language-']`), { attributeFilter: ['class'] })
-    groupCodeBlockMutationObserverList.push(groupCodeBlockMutationObserver)
+
+    for (const codeBlockEl of groupCodeBlockEl.querySelectorAll(`div[class*='language-']`)) {
+      groupCodeBlockMutationObserver.observe(codeBlockEl, { attributeFilter: ['class'] })
+      groupCodeBlockMutationObserverList.push(groupCodeBlockMutationObserver)
+    }
 
     setGroupCodeBlockWrapperElementHeight(groupCodeBlockEl, groupCodeBlockEl.querySelector(`div[class*='language-'].active`), stepHeight)
   }
