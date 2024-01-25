@@ -75,6 +75,8 @@ function fixContentElementHeight() {
 onContentUpdated(() => {
   window.addEventListener('resize', fixContentElementHeight)
   fixContentElementHeight()
+
+  console.log('run')
 })
 
 onUnmounted(() => {

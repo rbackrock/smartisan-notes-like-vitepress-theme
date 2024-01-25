@@ -2,9 +2,7 @@
 </script>
 
 <template>
-  <div class="content__container">
-    <Content class="sn" />
-  </div>
+  <Content />
 </template>
 
 <style>

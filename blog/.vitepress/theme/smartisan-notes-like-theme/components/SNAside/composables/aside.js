@@ -30,7 +30,7 @@ export function useAside() {
   })
 
   onUnmounted(() => {
-    window.removeEventListener('resize', clac)
+    window.removeEventListener('resize', calc)
   })
 
   return {
