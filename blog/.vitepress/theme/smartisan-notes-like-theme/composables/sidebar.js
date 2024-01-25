@@ -24,7 +24,7 @@ export function useSidebar() {
   }
 }
 
-export function useCalcFIxSidebarElementHeight() {
+export function useCalcFixSidebarElementHeight() {
   const lineHeightPc = stepHeight.PC
   const lineHeightMobile = stepHeight.MOBILE
   const {
@@ -47,7 +47,6 @@ export function useCalcFIxSidebarElementHeight() {
     const navListWrapperEl = document.querySelector('#sidebar__container__wrapper__hook')
     const navElList = navListWrapperEl.querySelectorAll('li.category, li.item')
     for (const navEl of navElList) {
-      navEl.style.height = 'auto'
       setElementHeight(navEl, stepHeight)
     }
   }

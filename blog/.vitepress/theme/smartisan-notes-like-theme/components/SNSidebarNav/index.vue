@@ -10,7 +10,7 @@ import {
   useData
 } from '../../composables/data'
 import {
-  useCalcFIxSidebarElementHeight
+  useCalcFixSidebarElementHeight
 } from '../../composables/sidebar'
 
 const {
@@ -24,7 +24,7 @@ const currentLink = computed(() => {
   return path.substring(0, dotIndex)
 })
 
-useCalcFIxSidebarElementHeight()
+useCalcFixSidebarElementHeight()
 
 const sidebarClassNames = computed(() => {
   const classNames = []
@@ -64,17 +64,16 @@ function handleClose() {
 </template>
 
 <style lang="less" scoped>
-  .empty {
-    text-align: center;
-    padding: 20px;
-    color: var(--text-3);
-  }
-</style>
-
-<style lang="less" scoped>
   @media (min-width: 768px) {
     .mask {
       display: none;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-3);
+      height: var(--md-text-height);
     }
 
     .sidebar__container {
@@ -117,6 +116,7 @@ function handleClose() {
           }
 
           .item {
+            height: var(--md-text-height);
             box-shadow: 0 1px 4px rgba(0,0,0,.03) inset;
 
             &.active {
@@ -168,6 +168,13 @@ function handleClose() {
       z-index: var(--layout-mask-zindex);
     }
 
+    .empty {
+      text-align: center;
+      padding: 20px;
+      color: var(--text-3);
+      height: var(--md-text-height-mobile);
+    }
+
     .sidebar__container {
       opacity: 0;
       position: fixed;
@@ -214,6 +221,7 @@ function handleClose() {
           }
 
           .item {
+            height: var(--md-text-height-mobile);
             box-shadow: 0 1px 4px rgba(0,0,0,.03) inset;
 
             &.active {

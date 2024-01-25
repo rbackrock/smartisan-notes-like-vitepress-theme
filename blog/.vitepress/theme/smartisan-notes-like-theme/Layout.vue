@@ -11,7 +11,7 @@ const { frontmatter, page } = useData()
 
 <template>
   <div v-if="frontmatter.layout === 'empty'" class="layout__container">
-    <SNHeader />
+    <SNHeader :has-aside="false" />
     <div class="body__container">
       <SNSidebar />
       <SNEmptyContent />
@@ -61,7 +61,7 @@ const { frontmatter, page } = useData()
 
         position: relative;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: stretch;
         width: 100%;
         height: calc(100% - var(--header-height));
@@ -81,7 +81,7 @@ const { frontmatter, page } = useData()
 
       .body__container {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: stretch;
         width: 100%;
         height: calc(100% - var(--header-height) * 2);

@@ -10,6 +10,12 @@ import {
 } from '../../store'
 import ContentAside from '../SNAside/index.vue'
 
+const props = defineProps({
+  hasAside: {
+    type: Boolean,
+    default: true
+  }
+})
 const { frontmatter, theme, page } = useData()
 
 function handleOpenMenu() {
@@ -34,7 +40,7 @@ function handleOpenCatalog() {
       </div>
     </div>
 
-    <ContentAside />
+    <ContentAside v-if="props.hasAside === true" />
   </header>
   <div class="control">
     <div class="control__wrapper">

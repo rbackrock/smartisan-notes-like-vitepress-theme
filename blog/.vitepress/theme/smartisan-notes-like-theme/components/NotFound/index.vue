@@ -6,7 +6,7 @@ import {
   useData
 } from '../../composables/data'
 import {
-  useCalcFIxSidebarElementHeight
+  useCalcFixSidebarElementHeight
 } from '../../composables/sidebar'
 
 const {
@@ -14,7 +14,7 @@ const {
 } = useData()
 const {
   fixContentElementHeight
-} = useCalcFIxSidebarElementHeight()
+} = useCalcFixSidebarElementHeight()
 
 onMounted(() => {
   fixContentElementHeight()
