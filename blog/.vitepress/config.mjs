@@ -31,10 +31,6 @@ export default defineConfig({
           {
             title: 'Markdown 示例',
             link: '/example'
-          },
-          {
-            title: '空白布局测试',
-            link: '/empty-test'
           }
         ]
       }

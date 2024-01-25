@@ -1,4 +1,9 @@
 ---
+layout: empty
 ---
 
-这是首页
+<script setup>
+import Home from './components/Home/index.vue'
+</script>
+
+<Home />

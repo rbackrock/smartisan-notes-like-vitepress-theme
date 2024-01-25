@@ -1,24 +1,9 @@
 <script setup>
-import {
-  onMounted
-} from 'vue'
-import {
-  useData
-} from '../../composables/data'
-import {
-  useCalcFixSidebarElementHeight
-} from '../../composables/sidebar'
+import { useData } from 'vitepress'
 
 const {
   theme
 } = useData()
-const {
-  fixContentElementHeight
-} = useCalcFixSidebarElementHeight()
-
-onMounted(() => {
-  fixContentElementHeight()
-})
 </script>
 
 <template>
@@ -31,7 +16,11 @@ onMounted(() => {
           <div class="adorn w__bottom__right"></div>
           <div class="adorn w__bottom__left"></div>
           <div class="content">
-            <p>{{ theme.notFoundMessage }}</p>
+            <p>欢迎您，我是 {{ theme.who }}</p>
+            <br>
+            <p>喜欢计算机，愿望之一是可以撸代码撸到老</p>
+            <br>
+            <p>感谢你的访问</p>
           </div>
         </div>
         <div class="via">
@@ -46,8 +35,8 @@ onMounted(() => {
 <style lang="less" scoped>
   @media (min-width: 768px) {
     .container {
-      flex: 1;
-      position: relative;
+      width: calc(100vw - 16vw);
+      height: calc(100vh - 5vh);
 
       .tips__container {
         position: absolute;
@@ -116,15 +105,13 @@ onMounted(() => {
       }
     }
   }
-
-  
 </style>
 
 <style lang="less" scoped>
   @media (max-width: 768px) {
     .container {
-      flex: 1;
-      position: relative;
+      width: calc(100vw);
+      height: calc(100vh - 5vh);
 
       .tips__container {
         position: absolute;
