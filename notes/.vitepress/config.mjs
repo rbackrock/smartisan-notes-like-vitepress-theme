@@ -5,7 +5,7 @@ export default defineConfig({
   lang: 'zh-CN',
   title: 'My Awesome Project',
   description: 'A VitePress Site',
-  srcDir: './posts',
+  srcDir: './src',
   outDir: '../dist',
   head: [
     [
@@ -13,6 +13,9 @@ export default defineConfig({
       { rel: 'icon', href: '/favicon.ico' }
     ]
   ],
+  rewrites: {
+    'posts/index.md': 'index.md'
+  },
   markdown: {
     lineNumbers: true,
     math: true
@@ -30,7 +33,7 @@ export default defineConfig({
         items: [
           {
             title: 'Markdown 示例',
-            link: '/example'
+            link: '/posts/example'
           }
         ]
       }
