@@ -20,7 +20,7 @@ export default defineConfig({
   themeConfig: {
     who: 'rbackly',
     notFoundMessage: 'Balls, 发生404错误了',
-    icp: '滇ICP备18008965号-1',
+    icp: '备案编号',
     nav: [
       { text: '首页', link: '/' }
     ],

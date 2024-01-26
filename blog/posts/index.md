@@ -1,5 +1,4 @@
 ---
-# layout: empty
 ---
 
 <script setup>
