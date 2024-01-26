@@ -18,7 +18,7 @@ export default defineConfig({
     math: true
   },
   themeConfig: {
-    who: 'rbackly',
+    who: '-你的名字-',
     notFoundMessage: 'Balls, 发生404错误了',
     icp: '备案编号',
     nav: [
