@@ -2,9 +2,9 @@
   "name": "yhuan",
   "license": "GPL-3.0",
   "scripts": {
-    "dev": "vitepress dev notes",
-    "build": "vitepress build notes",
-    "preview": "vitepress preview notes"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "devDependencies": {
     "less": "^4.2.0",
