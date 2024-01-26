@@ -10,7 +10,8 @@ useCalcFixContentElementHeight()
   <div id="content__container__hook" class="content__container">
     <div  class="content__container__wrapper">
       <div class="content__block__wrapper">
-        <Content ref="el" class="sn content__block" />
+        <slot name="notFound" />
+        <Content v-if="!$slots.notFound" ref="el" class="sn content__block" />
       </div>
     </div>
   </div>

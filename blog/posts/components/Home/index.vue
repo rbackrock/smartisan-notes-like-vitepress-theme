@@ -7,7 +7,7 @@ const {
 </script>
 
 <template>
-  <div class="container">
+  <div class="home__container">
     <div class="tips__container">
       <div class="tips__container__wrapper">
         <div class="note__border">
@@ -34,16 +34,16 @@ const {
 
 <style lang="less" scoped>
   @media (min-width: 768px) {
-    .container {
-      width: calc(100vw - 16vw);
-      height: calc(100vh - 5vh);
+    .home__container {
+      width: 100%;
+      height: 100%;
 
       .tips__container {
         position: absolute;
         width: 600px;
         top: 0;
         left: 50%;
-        transform: translate(-50%, 20vh);
+        transform: translate(-50%, 9vh);
         
         .tips__container__wrapper {
           color: #645647;
@@ -109,16 +109,16 @@ const {
 
 <style lang="less" scoped>
   @media (max-width: 768px) {
-    .container {
-      width: calc(100vw);
-      height: calc(100vh - 5vh);
+    .home__container {
+      width: 100%;
+      height: 100%;
 
       .tips__container {
         position: absolute;
         width: 90vw;
         top: 0;
         left: 50%;
-        transform: translate(-50%, 20vh);
+        transform: translate(-50%, 9vh);
         
         .tips__container__wrapper {
           color: #645647;

@@ -49,7 +49,7 @@ function handleOpenCatalog() {
           <span><IconAlignLeft class="menu-icon" /></span><span>文章</span>
         </div>
       </div>
-      <div v-if="(page.isNotFound || false) === false && frontmatter.layout !== 'empty'" class="p2">
+      <div v-if="(page.isNotFound || false) === false" class="p2">
         <div class="p2__wrapper button" @click="handleOpenCatalog">
           <span>目录</span>
           <span v-if="asideStore.isOpenDropdown === false"><IconChevronRight class="menu-icon" /></span>

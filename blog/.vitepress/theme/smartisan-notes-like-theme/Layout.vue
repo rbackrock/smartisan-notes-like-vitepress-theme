@@ -3,25 +3,19 @@ import { useData } from './composables/data'
 import SNHeader from './components/SNHeader/index.vue'
 import SNSidebar from './components/SNSidebarNav/index.vue'
 import SNContent from './components/SNContent/index.vue'
-import SNEmptyContent from './components/SNEmptyContent/index.vue'
 import NotFound from './components/NotFound/index.vue'
 
 const { frontmatter, page } = useData()
 </script>
 
 <template>
-  <div v-if="frontmatter.layout === 'empty'" class="layout__container">
-    <SNHeader :has-aside="false" />
-    <div class="body__container">
-      <SNSidebar />
-      <SNEmptyContent />
-    </div>
-  </div>
-  <div v-else-if="page.isNotFound" class="layout__container">
+  <div v-if="page.isNotFound" class="layout__container">
     <SNHeader />
     <div class="body__container">
       <SNSidebar />
-      <NotFound />
+      <SNContent #notFound>
+        <NotFound />
+      </SNContent>
     </div>
   </div>
   <div v-else-if="frontmatter.layout === 'blank'" class="layout__container">

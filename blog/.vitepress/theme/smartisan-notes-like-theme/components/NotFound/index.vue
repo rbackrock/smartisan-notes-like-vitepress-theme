@@ -54,7 +54,7 @@ onMounted(() => {
         width: 600px;
         top: 0;
         left: 50%;
-        transform: translate(-50%, 20vh);
+        transform: translate(-50%, 9vh);
         
         .tips__container__wrapper {
           color: #645647;
@@ -131,7 +131,7 @@ onMounted(() => {
         width: 90vw;
         top: 0;
         left: 50%;
-        transform: translate(-50%, 20vh);
+        transform: translate(-50%, 9vh);
         
         .tips__container__wrapper {
           color: #645647;
