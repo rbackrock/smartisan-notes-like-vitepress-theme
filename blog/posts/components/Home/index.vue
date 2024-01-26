@@ -69,7 +69,7 @@ const {
                 top: -6px;
                 left: -6px;
               }
-              
+
               &.w__top_right {
                 top: -6px;
                 right: -6px;
