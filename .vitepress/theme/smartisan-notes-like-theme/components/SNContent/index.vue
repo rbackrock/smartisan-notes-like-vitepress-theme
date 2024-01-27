@@ -62,6 +62,7 @@ useCalcFixContentElementHeight()
 
           .content__block {
             flex: 1;
+            width: 100%;
             max-width: 900px;
           }
         }
