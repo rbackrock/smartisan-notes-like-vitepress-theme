@@ -575,3 +575,21 @@
   margin: 0 !important;
   padding: 1em 0;
 }
+
+/**
+ * br
+ * -------------------------------------------------------------------------- */
+
+.sn br {
+  content: ' ';
+  display: block;
+  height: var(--md-text-height);
+  line-height: var(--md-text-height);
+}
+
+@media (max-width: 768px) {
+  .sn br {
+    height: var(--md-text-height-mobile);
+    line-height: var(--md-text-height-mobile);
+  }
+}
