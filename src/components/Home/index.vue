@@ -16,11 +16,11 @@ const {
           <div class="adorn w__bottom__right"></div>
           <div class="adorn w__bottom__left"></div>
           <div class="content">
-            <p>欢迎您，我是{{ theme.who }}</p>
+            <div>欢迎您，我是{{ theme.who }}</div>
             <br>
-            <p>喜欢计算机，愿望之一是可以撸代码撸到老</p>
+            <div>喜欢计算机，愿望之一是可以撸代码撸到老</div>
             <br>
-            <p>感谢你的访问</p>
+            <div>感谢你的访问</div>
           </div>
         </div>
         <div class="via">
